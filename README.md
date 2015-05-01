@@ -3,6 +3,8 @@ netbeans-visual-diff-standalone [![Build Status](http://ci.cismet.de/buildStatus
 
 Use the Netbeans diff component in any Java Swing project
 
+![Visual Diff](/screenshots/diff-in-swing-app.png?raw=true "Visual Diff")
+
 License
 =======
 
