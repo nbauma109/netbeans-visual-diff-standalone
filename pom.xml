@@ -1,12 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     
-    <parent>
-        <groupId>de.cismet</groupId>
-        <artifactId>cismet-parent</artifactId>
-        <version>2.0-SNAPSHOT</version>
-    </parent>
-
     <groupId>de.cismet.custom</groupId>
     <artifactId>netbeans-visual-diff-standalone</artifactId>
     <version>2.0-SNAPSHOT</version>
@@ -34,18 +28,9 @@
 
     <repositories>
         <repository>
-            <id>cismet-repo</id>
-            <url>https://repo.cismet.de/repo</url>
-            <releases>
-                <enabled>true</enabled>
-                <checksumPolicy>warn</checksumPolicy>
-                <updatePolicy>daily</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <checksumPolicy>warn</checksumPolicy>
-                <updatePolicy>interval:60</updatePolicy>
-            </snapshots>
+            <id>netbeans</id>
+            <name>NetBeans</name>
+            <url>http://bits.netbeans.org/nexus/content/groups/netbeans/</url>
         </repository>
     </repositories>
 
@@ -54,7 +39,7 @@
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-netbeans-modules-diff</artifactId>
-            <version>RELEASE691</version>
+            <version>RELEASE802</version>
             <type>jar</type>
             <exclusions>
                 <exclusion>
@@ -103,7 +88,7 @@
         <dependency>
             <groupId>org.netbeans.modules</groupId>
             <artifactId>org-netbeans-modules-java-editor</artifactId>
-            <version>RELEASE691</version>
+            <version>RELEASE802</version>
             <type>jar</type>
             <exclusions>
                 <exclusion>
@@ -323,7 +308,7 @@
         <dependency>
             <groupId>org.netbeans.modules</groupId>
             <artifactId>org-netbeans-modules-editor-errorstripe</artifactId>
-            <version>RELEASE691</version>
+            <version>RELEASE802</version>
             <type>jar</type>
             <exclusions>
                 <exclusion>
@@ -370,7 +355,7 @@
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-netbeans-modules-java-editor-lib</artifactId>
-            <version>RELEASE691</version>
+            <version>RELEASE802</version>
             <scope>runtime</scope>
             <exclusions>
                 <exclusion>
@@ -418,7 +403,7 @@
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-netbeans-modules-java-source</artifactId>
-            <version>RELEASE691</version>
+            <version>RELEASE802</version>
             <scope>runtime</scope>
             <exclusions>
                 <exclusion>
@@ -554,7 +539,7 @@
         <dependency>
             <groupId>org.netbeans.modules</groupId>
             <artifactId>org-netbeans-modules-editor-settings-storage</artifactId>
-            <version>RELEASE691</version>
+            <version>RELEASE802</version>
             <scope>runtime</scope>
             <exclusions>
                 <exclusion>
@@ -586,7 +571,7 @@
         <dependency>
             <groupId>org.netbeans.modules</groupId>
             <artifactId>org-netbeans-core-startup</artifactId>
-            <version>RELEASE691</version>
+            <version>RELEASE802</version>
             <scope>runtime</scope>
             <exclusions>
                 <exclusion>
@@ -606,7 +591,7 @@
         <dependency>
             <groupId>org.netbeans.modules</groupId>
             <artifactId>org-netbeans-modules-editor-mimelookup-impl</artifactId>
-            <version>RELEASE691</version>
+            <version>RELEASE802</version>
             <scope>runtime</scope>
             <exclusions>
                 <exclusion>
@@ -638,7 +623,7 @@
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-netbeans-modules-editor-codetemplates</artifactId>
-            <version>RELEASE691</version>
+            <version>RELEASE802</version>
             <scope>runtime</scope>
             <exclusions>
                 <exclusion>
@@ -734,7 +719,7 @@
         <dependency>
             <groupId>org.netbeans.api</groupId>
             <artifactId>org-netbeans-modules-parsing-api</artifactId>
-            <version>RELEASE691</version>
+            <version>RELEASE802</version>
             <scope>runtime</scope>
             <exclusions>
                 <exclusion>
@@ -815,6 +800,19 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>org.swinglabs</groupId>
+            <artifactId>swing-layout</artifactId>
+            <version>1.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.api</groupId>
+            <artifactId>org-netbeans-modules-refactoring-java</artifactId>
+            <version>RELEASE802</version>
+        </dependency>
     </dependencies>
-
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
 </project>
