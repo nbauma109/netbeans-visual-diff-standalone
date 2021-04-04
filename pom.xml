@@ -23,9 +23,9 @@
 	</prerequisites>
 
 	<scm>
-		<connection>https://github.com/nbauma109/netbeans-visual-diff-standalone.git</connection>
+		<connection>scm:git:git@github.com:nbauma109/netbeans-visual-diff-standalone.git</connection>
 		<developerConnection>scm:git:git@github.com:nbauma109/netbeans-visual-diff-standalone.git</developerConnection>
-		<url>https://github.com/nbauma109/netbeans-visual-diff-standalone</url>
+		<url>scm:git:git@github.com:nbauma109/netbeans-visual-diff-standalone</url>
 	</scm>
 
 	<repositories>
