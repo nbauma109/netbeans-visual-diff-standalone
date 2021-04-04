@@ -23,9 +23,10 @@
 	</prerequisites>
 
 	<scm>
-		<connection>scm:git:git@github.com:nbauma109/netbeans-visual-diff-standalone.git</connection>
-		<developerConnection>scm:git:git@github.com:nbauma109/netbeans-visual-diff-standalone.git</developerConnection>
-		<url>scm:git:git@github.com:nbauma109/netbeans-visual-diff-standalone</url>
+		<connection>scm:git:https://github.com/nbauma109/netbeans-visual-diff-standalone.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/nbauma109/netbeans-visual-diff-standalone.git</developerConnection>
+		<url>https://github.com/nbauma109/netbeans-visual-diff-standalone</url>
+		<tag>HEAD</tag>
 	</scm>
 
 	<repositories>
@@ -43,7 +44,7 @@
 	      <artifactId>maven-release-plugin</artifactId>
 	      <version>3.0.0-M1</version>
 	      <configuration>
-	        <tagBase>https://github.com/nbauma109/netbeans-visual-diff-standalone/tags</tagBase>
+	        <tagBase>ssh://git@github.com/nbauma109/netbeans-visual-diff-standalone/tags</tagBase>
 	      </configuration>
 	    </plugin>
 	  </plugins>
