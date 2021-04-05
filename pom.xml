@@ -174,5 +174,6 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<netbeans.version>RELEASE123</netbeans.version>
+		<project.scm.id>github.com</project.scm.id>
 	</properties>
 </project>
