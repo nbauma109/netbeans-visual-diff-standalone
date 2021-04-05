@@ -44,7 +44,7 @@
 	      <artifactId>maven-release-plugin</artifactId>
 	      <version>3.0.0-M1</version>
 	      <configuration>
-	        <tagBase>ssh://git@github.com/nbauma109/netbeans-visual-diff-standalone/tags</tagBase>
+	        <tagBase>scm:git:ssh://git@github.com/nbauma109/netbeans-visual-diff-standalone/tags</tagBase>
 	      </configuration>
 	    </plugin>
 	  </plugins>
