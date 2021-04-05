@@ -29,6 +29,14 @@
 		<tag>HEAD</tag>
 	</scm>
 
+	<distributionManagement>
+	   <repository>
+	     <id>github</id>
+	     <name>GitHub nbauma109 Apache Maven Packages</name>
+	     <url>https://maven.pkg.github.com/nbauma109/netbeans-visual-diff-standalone</url>
+	   </repository>
+	</distributionManagement>
+
 	<repositories>
 		<repository>
 			<id>netbeans</id>
