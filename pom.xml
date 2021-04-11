@@ -1,4 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.github.nbauma109</groupId>
@@ -28,11 +30,11 @@
 	</scm>
 
 	<distributionManagement>
-	   <repository>
-	     <id>pkg.github.com</id>
-	     <name>GitHub nbauma109 Apache Maven Packages</name>
-	     <url>https://maven.pkg.github.com/nbauma109/mvn-repo</url>
-	   </repository>
+		<repository>
+			<id>pkg.github.com</id>
+			<name>GitHub nbauma109 Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/nbauma109/mvn-repo</url>
+		</repository>
 	</distributionManagement>
 
 	<repositories>
@@ -44,64 +46,65 @@
 	</repositories>
 
 	<build>
-	  <plugins>
-	    <plugin>
-	      <groupId>org.apache.maven.plugins</groupId>
-	      <artifactId>maven-release-plugin</artifactId>
-	      <version>3.0.0-M1</version>
-	      <configuration>
-	        <tagBase>https://github.com/nbauma109/netbeans-visual-diff-standalone/tags</tagBase>
-	      </configuration>
-	    </plugin>
-		<plugin>
-		  <groupId>org.apache.maven.plugins</groupId>
-		  <artifactId>maven-dependency-plugin</artifactId>
-		  <version>3.1.2</version>
-		  <executions>
-		    <execution>
-		      <id>unpack</id>
-		      <phase>generate-resources</phase>
-		      <goals>
-		        <goal>unpack</goal>
-		      </goals>
-		      <configuration>
-		        <artifactItems>
-		          <artifactItem>
-					<groupId>org.netbeans.modules</groupId>
-					<artifactId>org-netbeans-modules-java-editor</artifactId>
-					<version>${netbeans.version}</version>
-		            <type>jar</type>
-		            <includes>org/netbeans/modules/java/editor/resources/**/*</includes>
-		            <outputDirectory>${project.build.outputDirectory}</outputDirectory>
-		          </artifactItem>
-		        </artifactItems>
-		      </configuration>
-		    </execution>
-		  </executions>
-		</plugin>
-		<plugin>
-		    <groupId>com.google.code.maven-replacer-plugin</groupId>
-		    <artifactId>replacer</artifactId> 
-		    <version>1.5.3</version> 
-		    <executions>
-		        <execution>
-		            <phase>process-resources</phase> <goals>
-		                <goal>replace</goal> 
-		            </goals> 
-		        </execution> 
-		    </executions> 
-		    <configuration>
-		        <file>${project.build.outputDirectory}/org/netbeans/modules/java/editor/resources/layer.xml</file>
-		        <outputFile>${project.build.outputDirectory}/org/netbeans/modules/java/editor/resources/layer.xml</outputFile> 
-				<replacements> 
-				    <replacement>
-				        <token>"org.netbeans.modules.editor.java.JavaKit"</token> 
-				        <value>"de.cismet.custom.visualdiff.SyntaxColoringJavaKit"</value> 
-				    </replacement> 
-				</replacements>
-			</configuration>
-		</plugin>
-	  </plugins>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>3.0.0-M1</version>
+				<configuration>
+					<tagBase>https://github.com/nbauma109/netbeans-visual-diff-standalone/tags</tagBase>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>3.1.2</version>
+				<executions>
+					<execution>
+						<id>unpack</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>org.netbeans.modules</groupId>
+									<artifactId>org-netbeans-modules-java-editor</artifactId>
+									<version>${netbeans.version}</version>
+									<type>jar</type>
+									<includes>org/netbeans/modules/java/editor/resources/**/*</includes>
+									<outputDirectory>${project.build.outputDirectory}</outputDirectory>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.google.code.maven-replacer-plugin</groupId>
+				<artifactId>replacer</artifactId>
+				<version>1.5.3</version>
+				<executions>
+					<execution>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>replace</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<file>${project.build.outputDirectory}/org/netbeans/modules/java/editor/resources/layer.xml</file>
+					<outputFile>${project.build.outputDirectory}/org/netbeans/modules/java/editor/resources/layer.xml</outputFile>
+					<replacements>
+						<replacement>
+							<token>"org.netbeans.modules.editor.java.JavaKit"</token>
+							<value>"de.cismet.custom.visualdiff.SyntaxColoringJavaKit"</value>
+						</replacement>
+					</replacements>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 
 
@@ -133,9 +136,9 @@
 			<version>${netbeans.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.kohsuke.sorcerer</groupId>
-			<artifactId>sorcerer-javac</artifactId>
-			<version>0.11</version>
+			<groupId>org.frgaal</groupId>
+			<artifactId>compiler</artifactId>
+			<version>14.0.0</version>
 		</dependency>
 	</dependencies>
 	<properties>
