@@ -53,6 +53,54 @@
 	        <tagBase>https://github.com/nbauma109/netbeans-visual-diff-standalone/tags</tagBase>
 	      </configuration>
 	    </plugin>
+		<plugin>
+		  <groupId>org.apache.maven.plugins</groupId>
+		  <artifactId>maven-dependency-plugin</artifactId>
+		  <version>3.1.2</version>
+		  <executions>
+		    <execution>
+		      <id>unpack</id>
+		      <phase>generate-resources</phase>
+		      <goals>
+		        <goal>unpack</goal>
+		      </goals>
+		      <configuration>
+		        <artifactItems>
+		          <artifactItem>
+					<groupId>org.netbeans.modules</groupId>
+					<artifactId>org-netbeans-modules-java-editor</artifactId>
+					<version>${netbeans.version}</version>
+		            <type>jar</type>
+		            <includes>org/netbeans/modules/java/editor/resources/**/*</includes>
+		            <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+		          </artifactItem>
+		        </artifactItems>
+		      </configuration>
+		    </execution>
+		  </executions>
+		</plugin>
+		<plugin>
+		    <groupId>com.google.code.maven-replacer-plugin</groupId>
+		    <artifactId>replacer</artifactId> 
+		    <version>1.5.3</version> 
+		    <executions>
+		        <execution>
+		            <phase>process-resources</phase> <goals>
+		                <goal>replace</goal> 
+		            </goals> 
+		        </execution> 
+		    </executions> 
+		    <configuration>
+		        <file>${project.build.outputDirectory}/org/netbeans/modules/java/editor/resources/layer.xml</file>
+		        <outputFile>${project.build.outputDirectory}/org/netbeans/modules/java/editor/resources/layer.xml</outputFile> 
+				<replacements> 
+				    <replacement>
+				        <token>"org.netbeans.modules.editor.java.JavaKit"</token> 
+				        <value>"de.cismet.custom.visualdiff.SyntaxColoringJavaKit"</value> 
+				    </replacement> 
+				</replacements>
+			</configuration>
+		</plugin>
 	  </plugins>
 	</build>
 
@@ -65,93 +113,8 @@
 			<version>1.2.14</version>
 		</dependency>
 		<dependency>
-			<groupId>org.swinglabs</groupId>
-			<artifactId>swing-layout</artifactId>
-			<version>1.0.3</version>
-		</dependency>
-		<dependency>
-			<groupId>org.netbeans.api</groupId>
-			<artifactId>org-netbeans-api-progress</artifactId>
-			<version>${netbeans.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.netbeans.api</groupId>
-			<artifactId>org-netbeans-api-visual</artifactId>
-			<version>${netbeans.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>org.netbeans.api</groupId>
 			<artifactId>org-netbeans-modules-diff</artifactId>
-			<version>${netbeans.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.netbeans.api</groupId>
-			<artifactId>org-netbeans-modules-editor</artifactId>
-			<version>${netbeans.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.netbeans.api</groupId>
-			<artifactId>org-netbeans-modules-editor-codetemplates</artifactId>
-			<version>${netbeans.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.netbeans.api</groupId>
-			<artifactId>org-netbeans-modules-java-editor-lib</artifactId>
-			<version>${netbeans.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.netbeans.api</groupId>
-			<artifactId>org-netbeans-modules-java-source</artifactId>
-			<version>${netbeans.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.netbeans.api</groupId>
-			<artifactId>org-netbeans-modules-parsing-api</artifactId>
-			<version>${netbeans.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.netbeans.api</groupId>
-			<artifactId>org-netbeans-modules-refactoring-java</artifactId>
-			<version>${netbeans.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.netbeans.api</groupId>
-			<artifactId>org-openide-awt</artifactId>
-			<version>${netbeans.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.netbeans.api</groupId>
-			<artifactId>org-openide-dialogs</artifactId>
-			<version>${netbeans.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.netbeans.api</groupId>
-			<artifactId>org-openide-filesystems</artifactId>
-			<version>${netbeans.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.netbeans.api</groupId>
-			<artifactId>org-openide-util</artifactId>
-			<version>${netbeans.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.netbeans.api</groupId>
-			<artifactId>org-openide-util-lookup</artifactId>
-			<version>${netbeans.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.netbeans.modules</groupId>
-			<artifactId>org-netbeans-core-startup</artifactId>
-			<version>${netbeans.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.netbeans.modules</groupId>
-			<artifactId>org-netbeans-libs-javacup</artifactId>
-			<version>${netbeans.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.netbeans.modules</groupId>
-			<artifactId>org-netbeans-modules-editor-errorstripe</artifactId>
 			<version>${netbeans.version}</version>
 		</dependency>
 		<dependency>
@@ -166,13 +129,13 @@
 		</dependency>
 		<dependency>
 			<groupId>org.netbeans.modules</groupId>
-			<artifactId>org-netbeans-modules-editor-settings-storage</artifactId>
+			<artifactId>org-netbeans-modules-java-editor</artifactId>
 			<version>${netbeans.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.netbeans.modules</groupId>
-			<artifactId>org-netbeans-modules-java-editor</artifactId>
-			<version>${netbeans.version}</version>
+			<groupId>org.kohsuke.sorcerer</groupId>
+			<artifactId>sorcerer-javac</artifactId>
+			<version>0.11</version>
 		</dependency>
 	</dependencies>
 	<properties>
