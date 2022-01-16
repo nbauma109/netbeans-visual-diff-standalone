@@ -31,10 +31,6 @@ import javax.swing.SwingWorker;
  */
 public class DiffPanel extends javax.swing.JPanel {
 
-    //~ Static fields/initializers ---------------------------------------------
-
-    private static final org.apache.log4j.Logger LOG = org.apache.log4j.Logger.getLogger(DiffPanel.class);
-
     //~ Instance fields --------------------------------------------------------
 
     protected DiffView view;
@@ -68,7 +64,7 @@ public class DiffPanel extends javax.swing.JPanel {
     public void update() {
         if ((left == null) || (right == null)) {
             showFilesMissing();
-            LOG.warn("At least one file is null. The diff component can't be created.");
+            System.out.println("At least one file is null. The diff component can't be created.");
             return;
         }
 
@@ -92,7 +88,7 @@ public class DiffPanel extends javax.swing.JPanel {
                         pnlDiff.add(view.getComponent(), BorderLayout.CENTER);
                         showDiff();
                     } catch (Exception e) {
-                        LOG.error("Could not update diff component.", e);
+                        e.printStackTrace();
                     }
                 }
             }.execute();
