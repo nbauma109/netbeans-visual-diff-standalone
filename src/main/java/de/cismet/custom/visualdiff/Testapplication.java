@@ -50,14 +50,14 @@ public class Testapplication extends javax.swing.JFrame {
     private static final String MIMETYPE_JSON = "text/javascript";
     private static final String MIMETYPE_TEXT = "text/plain";
 
-    private static final String FILENAME1_HTML = "C:\\Users\\nicol\\git\\netbeans-visual-diff-standalone\\src\\test\\resources\\filestodiff\\html1.html";
-    private static final String FILENAME2_HTML = "C:\\Users\\nicol\\git\\netbeans-visual-diff-standalone\\src\\test\\resources\\filestodiff\\html2.html";
-    private static final String FILENAME1_JAVA = "C:\\Users\\nicol\\git\\netbeans-visual-diff-standalone\\src\\test\\resources\\filestodiff\\java1.java";
-    private static final String FILENAME2_JAVA = "C:\\Users\\nicol\\git\\netbeans-visual-diff-standalone\\src\\test\\resources\\filestodiff\\java2.java";
-    private static final String FILENAME1_JSON = "C:\\Users\\nicol\\git\\netbeans-visual-diff-standalone\\src\\test\\resources\\filestodiff\\json1.json";
-    private static final String FILENAME2_JSON = "C:\\Users\\nicol\\git\\netbeans-visual-diff-standalone\\src\\test\\resources\\filestodiff\\json2.json";
-    private static final String FILENAME1_TEXT = "C:\\Users\\nicol\\git\\netbeans-visual-diff-standalone\\src\\test\\resources\\filestodiff\\text1.txt";
-    private static final String FILENAME2_TEXT = "C:\\Users\\nicol\\git\\netbeans-visual-diff-standalone\\src\\test\\resources\\filestodiff\\text2.txt";
+    private static final String FILENAME1_HTML = "src\\test\\resources\\filestodiff\\html1.html";
+    private static final String FILENAME2_HTML = "src\\test\\resources\\filestodiff\\html2.html";
+    private static final String FILENAME1_JAVA = "src\\test\\resources\\filestodiff\\java1.java";
+    private static final String FILENAME2_JAVA = "src\\test\\resources\\filestodiff\\java2.java";
+    private static final String FILENAME1_JSON = "src\\test\\resources\\filestodiff\\json1.json";
+    private static final String FILENAME2_JSON = "src\\test\\resources\\filestodiff\\json2.json";
+    private static final String FILENAME1_TEXT = "src\\test\\resources\\filestodiff\\text1.txt";
+    private static final String FILENAME2_TEXT = "src\\test\\resources\\filestodiff\\text2.txt";
 
     //~ Instance fields --------------------------------------------------------
     private DiffPanel pnlDiff;

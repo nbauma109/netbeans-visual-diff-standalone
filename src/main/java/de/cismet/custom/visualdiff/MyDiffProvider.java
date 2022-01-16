@@ -7,14 +7,13 @@
 ****************************************************/
 package de.cismet.custom.visualdiff;
 
+import org.kohsuke.MetaInfServices;
 import org.netbeans.api.diff.Difference;
 import org.netbeans.spi.diff.DiffProvider;
-import org.openide.util.lookup.ServiceProvider;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +32,7 @@ import java.util.List;
  * @author   jweintraut
  * @version  $Revision$, $Date$
  */
-@ServiceProvider(service = DiffProvider.class)
+@MetaInfServices(DiffProvider.class)
 public class MyDiffProvider extends DiffProvider {
 
     //~ Methods ----------------------------------------------------------------
