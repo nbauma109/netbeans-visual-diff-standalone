@@ -166,11 +166,6 @@
 			<artifactId>org-netbeans-modules-java-editor</artifactId>
 			<version>${netbeans.version}</version>
 		</dependency>
-		<dependency>
-		  <groupId>org.kohsuke.metainf-services</groupId>
-		  <artifactId>metainf-services</artifactId>
-		  <version>1.8</version>
-		</dependency>
 	</dependencies>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

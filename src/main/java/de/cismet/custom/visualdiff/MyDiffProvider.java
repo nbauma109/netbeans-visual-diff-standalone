@@ -7,7 +7,6 @@
 ****************************************************/
 package de.cismet.custom.visualdiff;
 
-import org.kohsuke.MetaInfServices;
 import org.netbeans.api.diff.Difference;
 import org.netbeans.spi.diff.DiffProvider;
 
@@ -32,7 +31,6 @@ import java.util.List;
  * @author   jweintraut
  * @version  $Revision$, $Date$
  */
-@MetaInfServices(DiffProvider.class)
 public class MyDiffProvider extends DiffProvider {
 
     //~ Methods ----------------------------------------------------------------
