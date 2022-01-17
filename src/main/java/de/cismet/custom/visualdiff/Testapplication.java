@@ -336,7 +336,10 @@ public class Testapplication extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDiffTextFilesActionPerformed
 
     /**
-     * DOCUMENT ME!
+     * Run with VM arguments :
+     * --add-opens java.base/java.net=ALL-UNNAMED 
+     * --add-opens java.desktop/javax.swing.text=ALL-UNNAMED 
+     * --add-opens java.prefs/java.util.prefs=ALL-UNNAMED
      *
      * @param args the command line arguments
      */
