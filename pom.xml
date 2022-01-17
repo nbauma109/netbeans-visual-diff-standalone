@@ -67,6 +67,14 @@
 						<configuration>
 							<artifactItems>
 								<artifactItem>
+									<groupId>org.netbeans.api</groupId>
+									<artifactId>org-netbeans-modules-editor</artifactId>
+									<version>${netbeans.version}</version>
+									<type>jar</type>
+									<includes>org/netbeans/modules/editor/resources/**/*</includes>
+									<outputDirectory>${project.build.outputDirectory}</outputDirectory>
+								</artifactItem>
+								<artifactItem>
 									<groupId>org.netbeans.modules</groupId>
 									<artifactId>org-netbeans-modules-java-editor</artifactId>
 									<version>${netbeans.version}</version>
@@ -85,22 +93,52 @@
 				<version>1.5.3</version>
 				<executions>
 					<execution>
+						<id>javakit</id>
 						<phase>process-resources</phase>
 						<goals>
 							<goal>replace</goal>
 						</goals>
+						<configuration>
+							<file>${project.build.outputDirectory}/org/netbeans/modules/java/editor/resources/layer.xml</file>
+							<outputFile>${project.build.outputDirectory}/org/netbeans/modules/java/editor/resources/layer.xml</outputFile>
+							<replacements>
+								<replacement>
+									<token>"org.netbeans.modules.editor.java.JavaKit"</token>
+									<value>"de.cismet.custom.visualdiff.SyntaxColoringJavaKit"</value>
+								</replacement>
+							</replacements>
+						</configuration>
+					</execution>
+					<execution>
+						<id>color</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>replace</goal>
+						</goals>
+						<configuration>
+							<file>${project.build.outputDirectory}/org/netbeans/modules/editor/resources/NetBeans-fontsColorsDefaults.xml</file>
+							<outputFile>${project.build.outputDirectory}/org/netbeans/modules/editor/resources/NetBeans-fontsColorsDefaults.xml</outputFile>
+							<replacements>
+								<replacement><!-- string -->
+									<token>"ffCE7B00"</token>
+									<value>"FF2A00FF"</value>
+								</replacement>
+								<replacement><!-- char -->
+									<token>"ffCE7B00"</token>
+									<value>"FF2A00FF"</value>
+								</replacement>
+								<replacement><!-- keyword -->
+									<token>"ff0000E6"</token>
+									<value>"FF7F0055"</value>
+								</replacement>
+								<replacement><!-- comment -->
+									<token>"ff969696"</token>
+									<value>"FF3F5FBF"</value>
+								</replacement>
+							</replacements>
+						</configuration>
 					</execution>
 				</executions>
-				<configuration>
-					<file>${project.build.outputDirectory}/org/netbeans/modules/java/editor/resources/layer.xml</file>
-					<outputFile>${project.build.outputDirectory}/org/netbeans/modules/java/editor/resources/layer.xml</outputFile>
-					<replacements>
-						<replacement>
-							<token>"org.netbeans.modules.editor.java.JavaKit"</token>
-							<value>"de.cismet.custom.visualdiff.SyntaxColoringJavaKit"</value>
-						</replacement>
-					</replacements>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
