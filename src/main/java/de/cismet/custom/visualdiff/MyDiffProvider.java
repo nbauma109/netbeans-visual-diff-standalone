@@ -8,7 +8,9 @@
 package de.cismet.custom.visualdiff;
 
 import org.netbeans.api.diff.Difference;
+import org.netbeans.modules.diff.builtin.provider.BuiltInDiffProvider;
 import org.netbeans.spi.diff.DiffProvider;
+import org.openide.util.lookup.ServiceProvider;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -31,7 +33,11 @@ import java.util.List;
  * @author   jweintraut
  * @version  $Revision$, $Date$
  */
-public class MyDiffProvider extends DiffProvider {
+@ServiceProvider(
+        service = DiffProvider.class,
+        supersedes = { "org.netbeans.modules.diff.builtin.provider.BuiltInDiffProvider" }
+    )
+public class MyDiffProvider extends BuiltInDiffProvider {
 
     //~ Methods ----------------------------------------------------------------
 
