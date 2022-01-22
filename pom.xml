@@ -144,22 +144,18 @@
 			</plugin>
 		</plugins>
 	</build>
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.netbeans.modules</groupId>
-				<artifactId>org-netbeans-bootstrap</artifactId>
-				<version>RELEASE90</version> <!-- awaiting bug fix to remove  -->
-				<!-- https://bugs.eclipse.org/bugs/show_bug.cgi?id=578279 -->
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 	<dependencies>
 		<!-- Compile time dependencies -->
 		<dependency>
 			<groupId>org.netbeans.api</groupId>
 			<artifactId>org-netbeans-modules-diff</artifactId>
 			<version>${netbeans.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-netbeans-modules-options-api</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.netbeans.modules</groupId>
@@ -170,11 +166,47 @@
 			<groupId>org.netbeans.modules</groupId>
 			<artifactId>org-netbeans-modules-editor-plain</artifactId>
 			<version>${netbeans.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-netbeans-modules-options-api</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.netbeans.modules</groupId>
 			<artifactId>org-netbeans-modules-java-editor</artifactId>
 			<version>${netbeans.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-netbeans-modules-refactoring-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-netbeans-modules-refactoring-java</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.modules</groupId>
+					<artifactId>org-netbeans-modules-refactoring-java</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.modules</groupId>
+					<artifactId>org-netbeans-modules-whitelist</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-netbeans-modules-java-source</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-netbeans-libs-lucene</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-netbeans-modules-options-api</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 	</dependencies>
 	<properties>
