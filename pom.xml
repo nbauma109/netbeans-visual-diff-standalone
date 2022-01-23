@@ -58,8 +58,18 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
-				<version>3.1.2</version>
+				<version>3.2.0</version>
 				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/lib</outputDirectory>
+						</configuration>
+					</execution>
 					<execution>
 						<id>unpack</id>
 						<phase>generate-resources</phase>
@@ -153,6 +163,10 @@
 			<exclusions>
 				<exclusion>
 					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-openide-explorer</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
 					<artifactId>org-netbeans-modules-options-api</artifactId>
 				</exclusion>
 			</exclusions>
@@ -178,6 +192,14 @@
 			<artifactId>org-netbeans-modules-java-editor</artifactId>
 			<version>${netbeans.version}</version>
 			<exclusions>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-netbeans-api-search</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-openide-explorer</artifactId>
+				</exclusion>
 				<exclusion>
 					<groupId>org.netbeans.api</groupId>
 					<artifactId>org-netbeans-modules-refactoring-api</artifactId>
