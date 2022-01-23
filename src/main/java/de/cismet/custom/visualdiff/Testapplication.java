@@ -9,12 +9,9 @@
  */
 package de.cismet.custom.visualdiff;
 
-import org.netbeans.api.diff.DiffView;
-
 import org.openide.util.Exceptions;
 
 import java.awt.BorderLayout;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -66,8 +63,6 @@ public class Testapplication extends javax.swing.JFrame {
     private javax.swing.JButton btnDiffJSONFiles;
     private javax.swing.JButton btnDiffJavaFiles;
     private javax.swing.JButton btnDiffTextFiles;
-    private javax.swing.JButton btnNextDifference;
-    private javax.swing.JButton btnPrevDifference;
     private javax.swing.JPanel pnlControls;
     private javax.swing.JSeparator separator;
     // End of variables declaration//GEN-END:variables
@@ -84,7 +79,7 @@ public class Testapplication extends javax.swing.JFrame {
         final File file1 = new File(FILENAME1_TEXT);
         final File file2 = new File(FILENAME2_TEXT);
 
-        pnlDiff = new DiffPanel();
+        pnlDiff = new DiffPanel(this);
         pnlDiff.setLeftAndRight(getLines(new FileReader(file1)),
                 MIMETYPE_TEXT,
                 file1.getName(),
@@ -130,8 +125,6 @@ public class Testapplication extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         pnlControls = new javax.swing.JPanel();
-        btnPrevDifference = new javax.swing.JButton();
-        btnNextDifference = new javax.swing.JButton();
         separator = new javax.swing.JSeparator();
         btnDiffHTMLFiles = new javax.swing.JButton();
         btnDiffJavaFiles = new javax.swing.JButton();
@@ -140,30 +133,6 @@ public class Testapplication extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle(org.openide.util.NbBundle.getMessage(Testapplication.class, "Testapplication.title")); // NOI18N
-
-        btnPrevDifference.setText(org.openide.util.NbBundle.getMessage(
-                Testapplication.class,
-                "Testapplication.btnPrevDifference.text")); // NOI18N
-        btnPrevDifference.addActionListener(new java.awt.event.ActionListener() {
-
-                @Override
-                public void actionPerformed(final java.awt.event.ActionEvent evt) {
-                    btnPrevDifferenceActionPerformed(evt);
-                }
-            });
-        pnlControls.add(btnPrevDifference);
-
-        btnNextDifference.setText(org.openide.util.NbBundle.getMessage(
-                Testapplication.class,
-                "Testapplication.btnNextDifference.text")); // NOI18N
-        btnNextDifference.addActionListener(new java.awt.event.ActionListener() {
-
-                @Override
-                public void actionPerformed(final java.awt.event.ActionEvent evt) {
-                    btnNextDifferenceActionPerformed(evt);
-                }
-            });
-        pnlControls.add(btnNextDifference);
 
         separator.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         separator.setPreferredSize(new java.awt.Dimension(2, 23));
@@ -223,37 +192,6 @@ public class Testapplication extends javax.swing.JFrame {
         setBounds((screenSize.width - 729) / 2, (screenSize.height - 706) / 2, 729, 706);
     } // </editor-fold>//GEN-END:initComponents
 
-    /**
-     * The action handler for the 'next difference' button. Increases the
-     * 'current difference' property of the view.
-     *
-     * @param evt The event to handle.
-     */
-    private void btnNextDifferenceActionPerformed(final java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextDifferenceActionPerformed
-        if (pnlDiff.getDiffView() != null) {
-            final DiffView view = pnlDiff.getDiffView();
-            if (view.canSetCurrentDifference()) {
-                view.setCurrentDifference((view.getCurrentDifference() + 1) % view.getDifferenceCount());
-            }
-        }
-    }//GEN-LAST:event_btnNextDifferenceActionPerformed
-
-    /**
-     * The action handler for the 'previous difference' button. Decreases the
-     * 'current difference' property of the view.
-     *
-     * @param evt The event to handle.
-     */
-    private void btnPrevDifferenceActionPerformed(final java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevDifferenceActionPerformed
-        if (pnlDiff.getDiffView() != null) {
-            final DiffView view = pnlDiff.getDiffView();
-            if (view.canSetCurrentDifference()) {
-                view.setCurrentDifference(((view.getCurrentDifference() == 0) ? (view.getDifferenceCount() - 1)
-                        : (view.getCurrentDifference() - 1))
-                        % view.getDifferenceCount());
-            }
-        }
-    }//GEN-LAST:event_btnPrevDifferenceActionPerformed
 
     /**
      * The action handler for the 'HTML' button. Diffs two HTML files.
