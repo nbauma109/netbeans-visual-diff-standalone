@@ -143,6 +143,10 @@
 									<token>"ff0000E6"</token>
 									<value>"FF7F0055"</value>
 								</replacement>
+								<replacement><!-- comment -->
+									<token>"ff969696"</token>
+									<value>"FFBBBBBB"</value>
+								</replacement>
 							</replacements>
 						</configuration>
 					</execution>
