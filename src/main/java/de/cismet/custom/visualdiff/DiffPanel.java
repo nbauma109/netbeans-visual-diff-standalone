@@ -40,6 +40,8 @@ public class DiffPanel extends javax.swing.JPanel {
 
     //~ Instance fields --------------------------------------------------------
 
+    private static final long serialVersionUID = 1L;
+
     protected DiffView view;
     protected FileToDiff left;
     protected FileToDiff right;

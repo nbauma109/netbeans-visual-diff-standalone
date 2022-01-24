@@ -41,6 +41,8 @@ import java.io.Reader;
  */
 public class Testapplication extends javax.swing.JFrame {
 
+    private static final long serialVersionUID = 1L;
+
     //~ Static fields/initializers ---------------------------------------------
     private static final String MIMETYPE_HTML = "text/html";
     private static final String MIMETYPE_JAVA = "text/x-java";
@@ -100,7 +102,7 @@ public class Testapplication extends javax.swing.JFrame {
      *
      * @throws IOException DOCUMENT ME!
      */
-    private String getLines(final Reader reader) throws IOException {
+    private static String getLines(final Reader reader) throws IOException {
         final StringBuilder result = new StringBuilder();
         final BufferedReader bufferedReader = new BufferedReader(reader);
 

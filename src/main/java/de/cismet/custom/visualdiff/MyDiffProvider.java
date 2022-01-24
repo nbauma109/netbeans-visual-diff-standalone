@@ -41,6 +41,8 @@ public class MyDiffProvider extends BuiltInDiffProvider {
 
     //~ Methods ----------------------------------------------------------------
 
+    private static final long serialVersionUID = 1L;
+
     @Override
     public Difference[] computeDiff(final Reader reader1, final Reader reader2) throws IOException {
         return HuntDiff.diff(getLines(reader1), getLines(reader2), true);
@@ -55,7 +57,7 @@ public class MyDiffProvider extends BuiltInDiffProvider {
      *
      * @throws  IOException  DOCUMENT ME!
      */
-    private String[] getLines(final Reader reader) throws IOException {
+    private static String[] getLines(final Reader reader) throws IOException {
         final List<String> result = new ArrayList<String>();
         final BufferedReader bufferedReader = new BufferedReader(reader);
 
