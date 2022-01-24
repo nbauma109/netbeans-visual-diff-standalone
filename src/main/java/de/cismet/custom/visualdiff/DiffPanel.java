@@ -77,7 +77,7 @@ public class DiffPanel extends javax.swing.JPanel {
      */
     private void btnNextDifferenceActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnNextDifferenceActionPerformed
         if (view != null) {
-            if (view.canSetCurrentDifference()) {
+            if (view.canSetCurrentDifference() && view.getDifferenceCount() > 0) {
                 view.setCurrentDifference((view.getCurrentDifference() + 1) % view.getDifferenceCount());
             }
         }
@@ -91,7 +91,7 @@ public class DiffPanel extends javax.swing.JPanel {
      */
     private void btnPrevDifferenceActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnPrevDifferenceActionPerformed
         if (view != null) {
-            if (view.canSetCurrentDifference()) {
+            if (view.canSetCurrentDifference() && view.getDifferenceCount() > 0) {
                 view.setCurrentDifference(((view.getCurrentDifference() == 0) ? (view.getDifferenceCount() - 1)
                         : (view.getCurrentDifference() - 1))
                         % view.getDifferenceCount());
