@@ -169,6 +169,18 @@
 					<groupId>org.netbeans.api</groupId>
 					<artifactId>org-netbeans-modules-options-api</artifactId>
 				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-netbeans-spi-quicksearch</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-netbeans-modules-projectapi</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-netbeans-modules-queries</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
@@ -227,6 +239,78 @@
 				<exclusion>
 					<groupId>org.netbeans.api</groupId>
 					<artifactId>org-netbeans-modules-options-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-netbeans-libs-asm</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.modules</groupId>
+					<artifactId>org-netbeans-modules-java-completion</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-netbeans-spi-editor-hints</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-netbeans-spi-quicksearch</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-netbeans-spi-tasklist</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-netbeans-modules-projectapi</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-netbeans-modules-projectuiapi-base</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.modules</groupId>
+					<artifactId>org-netbeans-modules-project-indexingbridge</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.modules</groupId>
+					<artifactId>org-netbeans-modules-java-preprocessorbridge</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-netbeans-modules-queries</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-netbeans-modules-sampler</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-netbeans-modules-editor-codetemplates</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-netbeans-modules-classfile</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.modules</groupId>
+					<artifactId>org-netbeans-modules-parsing-lucene</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-netbeans-modules-java-platform</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-netbeans-libs-javacapi</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.modules</groupId>
+					<artifactId>org-netbeans-lib-nbjavac</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.modules</groupId>
+					<artifactId>org-netbeans-libs-javacimpl</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
