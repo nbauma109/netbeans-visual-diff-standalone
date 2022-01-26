@@ -314,6 +314,11 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+                <dependency>
+	            <groupId>com.github.nbauma109</groupId>
+	            <artifactId>nb-javac</artifactId>
+	            <version>17.0.0.0</version>
+	        </dependency>
 	</dependencies>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
