@@ -43,9 +43,9 @@
 			<name>NetBeans</name>
 			<url>http://netbeans.apidesign.org/maven2/</url>
 		</repository>
-                <repository>
-		        <id>jitpack.io</id>
-		        <url>https://jitpack.io</url>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
 		</repository>
 	</repositories>
 
@@ -191,11 +191,13 @@
 			<groupId>org.netbeans.modules</groupId>
 			<artifactId>org-netbeans-modules-editor-mimelookup-impl</artifactId>
 			<version>${netbeans.version}</version>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.netbeans.modules</groupId>
 			<artifactId>org-netbeans-modules-editor-plain</artifactId>
 			<version>${netbeans.version}</version>
+			<scope>runtime</scope>
 			<exclusions>
 				<exclusion>
 					<groupId>org.netbeans.api</groupId>
@@ -318,11 +320,31 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-                <dependency>
-	            <groupId>com.github.nbauma109</groupId>
-	            <artifactId>nb-javac</artifactId>
-	            <version>17.0.0.0</version>
-	        </dependency>
+		<dependency>
+			<groupId>org.netbeans.modules</groupId>
+			<artifactId>org-openide-util-ui-svg</artifactId>
+			<version>${netbeans.version}</version>
+			<scope>runtime</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-io</groupId>
+					<artifactId>commons-io</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>xalan</groupId>
+					<artifactId>xalan</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.github.nbauma109</groupId>
+			<artifactId>nb-javac</artifactId>
+			<version>17.0.0.0</version>
+		</dependency>
 	</dependencies>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
