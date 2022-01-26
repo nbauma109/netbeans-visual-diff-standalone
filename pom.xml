@@ -43,6 +43,10 @@
 			<name>NetBeans</name>
 			<url>http://netbeans.apidesign.org/maven2/</url>
 		</repository>
+                <repository>
+		        <id>jitpack.io</id>
+		        <url>https://jitpack.io</url>
+		</repository>
 	</repositories>
 
 	<build>
