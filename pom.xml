@@ -343,7 +343,8 @@
 		<dependency>
 			<groupId>com.github.nbauma109</groupId>
 			<artifactId>nb-javac</artifactId>
-			<version>17.0.0.0</version>
+			<version>17.0.0.0-all</version>
+			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
 	<properties>
