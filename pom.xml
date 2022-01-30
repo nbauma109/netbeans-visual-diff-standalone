@@ -341,10 +341,16 @@
 			</exclusions>
 		</dependency>
 		<dependency>
-			<groupId>com.github.nbauma109</groupId>
-			<artifactId>nb-javac</artifactId>
-			<version>17.0.0.0-all</version>
-			<scope>runtime</scope>
+		    <groupId>com.github.nbauma109.nb-javac</groupId>
+		    <artifactId>nb-javac-api</artifactId>
+		    <version>${version.nb-javac}</version>
+		    <scope>runtime</scope>
+		</dependency>
+		<dependency>
+		    <groupId>com.github.nbauma109.nb-javac</groupId>
+		    <artifactId>nb-javac-impl</artifactId>
+		    <version>${version.nb-javac}</version>
+		    <scope>runtime</scope>
 		</dependency>
 	</dependencies>
 	<properties>
@@ -352,6 +358,7 @@
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
 		<netbeans.version>RELEASE126</netbeans.version>
+        <version.nb-javac>17.0.0.0-custom-javap-separate-jars</version.nb-javac>
 		<project.scm.id>github.com</project.scm.id>
 	</properties>
 </project>
