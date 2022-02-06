@@ -425,7 +425,6 @@ public class HuntDiff {
 
         public int lineNo;
         public String line;
-        public int hash;
 
         //~ Constructors -------------------------------------------------------
 
@@ -438,7 +437,6 @@ public class HuntDiff {
         public Line(final int lineNo, final String line) {
             this.lineNo = lineNo;
             this.line = line;
-            this.hash = line.hashCode();
         }
     }
 

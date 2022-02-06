@@ -8,12 +8,13 @@
 package de.cismet.custom.visualdiff;
 
 import org.netbeans.api.diff.Difference;
+import org.netbeans.modules.diff.builtin.provider.BuiltInDiffProvider;
 import org.netbeans.spi.diff.DiffProvider;
+import org.openide.util.lookup.ServiceProvider;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,9 +33,15 @@ import java.util.List;
  * @author   jweintraut
  * @version  $Revision$, $Date$
  */
-public class MyDiffProvider extends DiffProvider {
+@ServiceProvider(
+        service = DiffProvider.class,
+        supersedes = { "org.netbeans.modules.diff.builtin.provider.BuiltInDiffProvider" }
+    )
+public class MyDiffProvider extends BuiltInDiffProvider {
 
     //~ Methods ----------------------------------------------------------------
+
+    private static final long serialVersionUID = 1L;
 
     @Override
     public Difference[] computeDiff(final Reader reader1, final Reader reader2) throws IOException {
@@ -50,7 +57,7 @@ public class MyDiffProvider extends DiffProvider {
      *
      * @throws  IOException  DOCUMENT ME!
      */
-    private String[] getLines(final Reader reader) throws IOException {
+    private static String[] getLines(final Reader reader) throws IOException {
         final List<String> result = new ArrayList<String>();
         final BufferedReader bufferedReader = new BufferedReader(reader);
 
