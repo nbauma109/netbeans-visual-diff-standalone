@@ -10,7 +10,7 @@ NetBeans Visual Diff Standalone
 
 Use the NetBeans diff component in any Java Swing project.
 
-![image](https://user-images.githubusercontent.com/9403560/152738278-1fac400a-108f-4362-8ec7-54ee43cb60c2.png)
+![visualdiff](https://user-images.githubusercontent.com/9403560/152738624-38118954-a6f2-4596-b41d-96fb4f695335.png)
 
 License
 =======
