@@ -5,12 +5,12 @@
 [![Github Release](https://github.com/nbauma109/netbeans-visual-diff-standalone/actions/workflows/release.yml/badge.svg)](https://github.com/nbauma109/netbeans-visual-diff-standalone/actions/workflows/release.yml)
 
 
-NetBeans Visual Diff Standalone [![Build Status](http://ci.cismet.de/buildStatus/icon?job=netbeans-visual-diff-standalone)](https://ci.cismet.de/job/netbeans-visual-diff-standalone/)
+NetBeans Visual Diff Standalone
 ===============================
 
 Use the NetBeans diff component in any Java Swing project.
 
-![Visual Diff](/screenshots/diff-in-swing-app.png?raw=true "Visual Diff")
+![image](https://user-images.githubusercontent.com/9403560/152738278-1fac400a-108f-4362-8ec7-54ee43cb60c2.png)
 
 License
 =======
