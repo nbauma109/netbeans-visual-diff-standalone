@@ -140,7 +140,7 @@
 								</replacement>
 								<replacement><!-- comment -->
 									<token>"ff969696"</token>
-									<value>"FFBBBBBB"</value>
+									<value>"FF999999"</value>
 								</replacement>
 							</replacements>
 						</configuration>
@@ -329,6 +329,10 @@
 					<groupId>xalan</groupId>
 					<artifactId>xalan</artifactId>
 				</exclusion>
+				<exclusion>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
@@ -349,7 +353,7 @@
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
 		<netbeans.version>RELEASE126</netbeans.version>
-        <version.nb-javac>17.0.0.0-custom-javap-separate-jars</version.nb-javac>
+        <version.nb-javac>17.0.0.0-separate-jars</version.nb-javac>
 		<project.scm.id>github.com</project.scm.id>
 	</properties>
 </project>
