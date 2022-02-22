@@ -81,14 +81,6 @@
 									<includes>org/netbeans/modules/editor/resources/**/*</includes>
 									<outputDirectory>${project.build.outputDirectory}</outputDirectory>
 								</artifactItem>
-								<artifactItem>
-									<groupId>org.netbeans.modules</groupId>
-									<artifactId>org-netbeans-modules-java-editor</artifactId>
-									<version>${netbeans.version}</version>
-									<type>jar</type>
-									<includes>org/netbeans/modules/java/editor/resources/**/*</includes>
-									<outputDirectory>${project.build.outputDirectory}</outputDirectory>
-								</artifactItem>
 							</artifactItems>
 						</configuration>
 					</execution>
@@ -99,23 +91,6 @@
 				<artifactId>replacer</artifactId>
 				<version>1.5.3</version>
 				<executions>
-					<execution>
-						<id>javakit</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>replace</goal>
-						</goals>
-						<configuration>
-							<file>${project.build.outputDirectory}/org/netbeans/modules/java/editor/resources/layer.xml</file>
-							<outputFile>${project.build.outputDirectory}/org/netbeans/modules/java/editor/resources/layer.xml</outputFile>
-							<replacements>
-								<replacement>
-									<token>"org.netbeans.modules.editor.java.JavaKit"</token>
-									<value>"de.cismet.custom.visualdiff.SyntaxColoringJavaKit"</value>
-								</replacement>
-							</replacements>
-						</configuration>
-					</execution>
 					<execution>
 						<id>color</id>
 						<phase>process-resources</phase>

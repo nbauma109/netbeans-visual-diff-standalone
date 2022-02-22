@@ -33,10 +33,7 @@ import java.util.List;
  * @author   jweintraut
  * @version  $Revision$, $Date$
  */
-@ServiceProvider(
-        service = DiffProvider.class,
-        supersedes = { "org.netbeans.modules.diff.builtin.provider.BuiltInDiffProvider" }
-    )
+@ServiceProvider(service = DiffProvider.class)
 public class MyDiffProvider extends BuiltInDiffProvider {
 
     //~ Methods ----------------------------------------------------------------
