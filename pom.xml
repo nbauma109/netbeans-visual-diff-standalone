@@ -228,49 +228,12 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<dependency>
-			<groupId>org.netbeans.modules</groupId>
-			<artifactId>org-openide-util-ui-svg</artifactId>
-			<version>${netbeans.version}</version>
-			<scope>runtime</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>commons-io</groupId>
-					<artifactId>commons-io</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>commons-logging</groupId>
-					<artifactId>commons-logging</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>xalan</groupId>
-					<artifactId>xalan</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>xml-apis</groupId>
-					<artifactId>xml-apis</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-		    <groupId>com.github.nbauma109.nb-javac</groupId>
-		    <artifactId>nb-javac-api</artifactId>
-		    <version>${version.nb-javac}</version>
-		    <scope>runtime</scope>
-		</dependency>
-		<dependency>
-		    <groupId>com.github.nbauma109.nb-javac</groupId>
-		    <artifactId>nb-javac-impl</artifactId>
-		    <version>${version.nb-javac}</version>
-		    <scope>runtime</scope>
-		</dependency>
 	</dependencies>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
-		<netbeans.version>RELEASE126</netbeans.version>
-        <version.nb-javac>17.0.0.0-separate-jars</version.nb-javac>
+		<netbeans.version>RELEASE90</netbeans.version>
 		<project.scm.id>github.com</project.scm.id>
 	</properties>
 </project>
