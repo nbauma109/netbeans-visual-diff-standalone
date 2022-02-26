@@ -143,49 +143,25 @@ public class Testapplication extends javax.swing.JFrame {
         btnDiffHTMLFiles.setText(org.openide.util.NbBundle.getMessage(
                 Testapplication.class,
                 "Testapplication.btnDiffHTMLFiles.text")); // NOI18N
-        btnDiffHTMLFiles.addActionListener(new java.awt.event.ActionListener() {
-
-                @Override
-                public void actionPerformed(final java.awt.event.ActionEvent evt) {
-                    btnDiffHTMLFilesActionPerformed(evt);
-                }
-            });
+        btnDiffHTMLFiles.addActionListener(this::btnDiffHTMLFilesActionPerformed);
         pnlControls.add(btnDiffHTMLFiles);
 
         btnDiffJavaFiles.setText(org.openide.util.NbBundle.getMessage(
                 Testapplication.class,
                 "Testapplication.btnDiffJavaFiles.text")); // NOI18N
-        btnDiffJavaFiles.addActionListener(new java.awt.event.ActionListener() {
-
-                @Override
-                public void actionPerformed(final java.awt.event.ActionEvent evt) {
-                    btnDiffJavaFilesActionPerformed(evt);
-                }
-            });
+        btnDiffJavaFiles.addActionListener(this::btnDiffJavaFilesActionPerformed);
         pnlControls.add(btnDiffJavaFiles);
 
         btnDiffJSONFiles.setText(org.openide.util.NbBundle.getMessage(
                 Testapplication.class,
                 "Testapplication.btnDiffJSONFiles.text")); // NOI18N
-        btnDiffJSONFiles.addActionListener(new java.awt.event.ActionListener() {
-
-                @Override
-                public void actionPerformed(final java.awt.event.ActionEvent evt) {
-                    btnDiffJSONFilesActionPerformed(evt);
-                }
-            });
+        btnDiffJSONFiles.addActionListener(this::btnDiffJSONFilesActionPerformed);
         pnlControls.add(btnDiffJSONFiles);
 
         btnDiffTextFiles.setText(org.openide.util.NbBundle.getMessage(
                 Testapplication.class,
                 "Testapplication.btnDiffTextFiles.text")); // NOI18N
-        btnDiffTextFiles.addActionListener(new java.awt.event.ActionListener() {
-
-                @Override
-                public void actionPerformed(final java.awt.event.ActionEvent evt) {
-                    btnDiffTextFilesActionPerformed(evt);
-                }
-            });
+        btnDiffTextFiles.addActionListener(this::btnDiffTextFilesActionPerformed);
         pnlControls.add(btnDiffTextFiles);
 
         getContentPane().add(pnlControls, java.awt.BorderLayout.SOUTH);
