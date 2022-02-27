@@ -17,6 +17,12 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.nio.charset.StandardCharsets;
+import java.util.Locale;
+import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+
+import javax.swing.SwingUtilities;
 
 /**
  * This is a test which demonstrates the use of the VisualDiff component.
@@ -43,6 +49,8 @@ public class Testapplication extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 1L;
 
+    private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("de/cismet/custom/visualdiff/Bundle", Locale.ENGLISH);
+    
     //~ Static fields/initializers ---------------------------------------------
     private static final String MIMETYPE_HTML = "text/html";
     private static final String MIMETYPE_JAVA = "text/x-java";
@@ -75,20 +83,25 @@ public class Testapplication extends javax.swing.JFrame {
      *
      * @throws Exception DOCUMENT ME!
      */
-    public Testapplication() throws Exception {
+    public Testapplication() {
         initComponents();
-
         final File file1 = new File(FILENAME1_TEXT);
         final File file2 = new File(FILENAME2_TEXT);
-
-        pnlDiff = new DiffPanel(this);
-        pnlDiff.setLeftAndRight(getLines(new FileReader(file1)),
-                MIMETYPE_TEXT,
-                file1.getName(),
-                getLines(new FileReader(file2)),
-                MIMETYPE_TEXT,
-                file2.getName());
-        getContentPane().add(pnlDiff, BorderLayout.CENTER);
+        try (FileReader reader1 = new FileReader(file1, StandardCharsets.UTF_8);
+             FileReader reader2 = new FileReader(file2, StandardCharsets.UTF_8)) {
+    
+            pnlDiff = new DiffPanel(this);
+            pnlDiff.setLeftAndRight(getLines(reader1),
+                    MIMETYPE_TEXT,
+                    file1.getName(),
+                    getLines(reader2),
+                    MIMETYPE_TEXT,
+                    file2.getName());
+            getContentPane().add(pnlDiff, BorderLayout.CENTER);
+            setVisible(true);
+        } catch (Exception ex) {
+            log(ex);
+        }
     }
 
     //~ Methods ----------------------------------------------------------------
@@ -103,20 +116,9 @@ public class Testapplication extends javax.swing.JFrame {
      * @throws IOException DOCUMENT ME!
      */
     private static String getLines(final Reader reader) throws IOException {
-        final StringBuilder result = new StringBuilder();
-        final BufferedReader bufferedReader = new BufferedReader(reader);
-
-        try {
-            String line = null;
-            while ((line = bufferedReader.readLine()) != null) {
-                result.append(line);
-                result.append("\n");
-            }
-        } finally {
-            bufferedReader.close();
+        try (BufferedReader bufferedReader = new BufferedReader(reader)) {
+            return bufferedReader.lines().collect(Collectors.joining(System.lineSeparator()));
         }
-
-        return result.toString();
     }
 
     /**
@@ -134,32 +136,28 @@ public class Testapplication extends javax.swing.JFrame {
         btnDiffTextFiles = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle(org.openide.util.NbBundle.getMessage(Testapplication.class, "Testapplication.title")); // NOI18N
+        setTitle(BUNDLE.getString("Testapplication.title")); // NOI18N
 
         separator.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         separator.setPreferredSize(new java.awt.Dimension(2, 23));
         pnlControls.add(separator);
 
-        btnDiffHTMLFiles.setText(org.openide.util.NbBundle.getMessage(
-                Testapplication.class,
+        btnDiffHTMLFiles.setText(BUNDLE.getString(
                 "Testapplication.btnDiffHTMLFiles.text")); // NOI18N
         btnDiffHTMLFiles.addActionListener(this::btnDiffHTMLFilesActionPerformed);
         pnlControls.add(btnDiffHTMLFiles);
 
-        btnDiffJavaFiles.setText(org.openide.util.NbBundle.getMessage(
-                Testapplication.class,
+        btnDiffJavaFiles.setText(BUNDLE.getString(
                 "Testapplication.btnDiffJavaFiles.text")); // NOI18N
         btnDiffJavaFiles.addActionListener(this::btnDiffJavaFilesActionPerformed);
         pnlControls.add(btnDiffJavaFiles);
 
-        btnDiffJSONFiles.setText(org.openide.util.NbBundle.getMessage(
-                Testapplication.class,
+        btnDiffJSONFiles.setText(BUNDLE.getString(
                 "Testapplication.btnDiffJSONFiles.text")); // NOI18N
         btnDiffJSONFiles.addActionListener(this::btnDiffJSONFilesActionPerformed);
         pnlControls.add(btnDiffJSONFiles);
 
-        btnDiffTextFiles.setText(org.openide.util.NbBundle.getMessage(
-                Testapplication.class,
+        btnDiffTextFiles.setText(BUNDLE.getString(
                 "Testapplication.btnDiffTextFiles.text")); // NOI18N
         btnDiffTextFiles.addActionListener(this::btnDiffTextFilesActionPerformed);
         pnlControls.add(btnDiffTextFiles);
@@ -179,15 +177,16 @@ public class Testapplication extends javax.swing.JFrame {
     private void btnDiffHTMLFilesActionPerformed(final java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiffHTMLFilesActionPerformed
         final File file1 = new File(FILENAME1_HTML);
         final File file2 = new File(FILENAME2_HTML);
-        try {
-            pnlDiff.setLeftAndRight(getLines(new FileReader(file1)),
+        try (FileReader reader1 = new FileReader(file1, StandardCharsets.UTF_8);
+             FileReader reader2 = new FileReader(file2, StandardCharsets.UTF_8)) {
+            pnlDiff.setLeftAndRight(getLines(reader1),
                     MIMETYPE_HTML,
                     file1.getName(),
-                    getLines(new FileReader(file2)),
+                    getLines(reader2),
                     MIMETYPE_HTML,
                     file2.getName());
         } catch (IOException ex) {
-            Exceptions.printStackTrace(ex);
+            log(ex);
         }
     }//GEN-LAST:event_btnDiffHTMLFilesActionPerformed
 
@@ -199,15 +198,16 @@ public class Testapplication extends javax.swing.JFrame {
     private void btnDiffJavaFilesActionPerformed(final java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiffJavaFilesActionPerformed
         final File file1 = new File(FILENAME1_JAVA);
         final File file2 = new File(FILENAME2_JAVA);
-        try {
-            pnlDiff.setLeftAndRight(getLines(new FileReader(file1)),
+        try (FileReader reader1 = new FileReader(file1, StandardCharsets.UTF_8);
+             FileReader reader2 = new FileReader(file2, StandardCharsets.UTF_8)) {
+            pnlDiff.setLeftAndRight(getLines(reader1),
                     MIMETYPE_JAVA,
                     file1.getName(),
-                    getLines(new FileReader(file2)),
+                    getLines(reader2),
                     MIMETYPE_JAVA,
                     file2.getName());
         } catch (IOException ex) {
-            Exceptions.printStackTrace(ex);
+            log(ex);
         }
     }//GEN-LAST:event_btnDiffJavaFilesActionPerformed
 
@@ -219,15 +219,16 @@ public class Testapplication extends javax.swing.JFrame {
     private void btnDiffJSONFilesActionPerformed(final java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiffJSONFilesActionPerformed
         final File file1 = new File(FILENAME1_JSON);
         final File file2 = new File(FILENAME2_JSON);
-        try {
-            pnlDiff.setLeftAndRight(getLines(new FileReader(file1)),
+        try (FileReader reader1 = new FileReader(file1, StandardCharsets.UTF_8);
+             FileReader reader2 = new FileReader(file2, StandardCharsets.UTF_8)) {
+            pnlDiff.setLeftAndRight(getLines(reader1),
                     MIMETYPE_JSON,
                     file1.getName(),
-                    getLines(new FileReader(file2)),
+                    getLines(reader2),
                     MIMETYPE_JSON,
                     file2.getName());
         } catch (IOException ex) {
-            Exceptions.printStackTrace(ex);
+            log(ex);
         }
     }//GEN-LAST:event_btnDiffJSONFilesActionPerformed
 
@@ -239,37 +240,34 @@ public class Testapplication extends javax.swing.JFrame {
     private void btnDiffTextFilesActionPerformed(final java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiffTextFilesActionPerformed
         final File file1 = new File(FILENAME1_TEXT);
         final File file2 = new File(FILENAME2_TEXT);
-        try {
-            pnlDiff.setLeftAndRight(getLines(new FileReader(file1)),
+        try (FileReader reader1 = new FileReader(file1, StandardCharsets.UTF_8);
+             FileReader reader2 = new FileReader(file2, StandardCharsets.UTF_8)) {
+            pnlDiff.setLeftAndRight(getLines(reader1),
                     MIMETYPE_TEXT,
                     file1.getName(),
-                    getLines(new FileReader(file2)),
+                    getLines(reader2),
                     MIMETYPE_TEXT,
                     file2.getName());
         } catch (IOException ex) {
-            Exceptions.printStackTrace(ex);
+            log(ex);
         }
     }//GEN-LAST:event_btnDiffTextFilesActionPerformed
+
+    private static void log(Exception ex) {
+        Exceptions.printStackTrace(ex);
+    }
 
     /**
      * Run with VM arguments :
      * --add-opens java.base/java.net=ALL-UNNAMED 
      * --add-opens java.desktop/javax.swing.text=ALL-UNNAMED 
      * --add-opens java.prefs/java.util.prefs=ALL-UNNAMED
+     * --add-opens java.desktop/javax.swing.plaf.basic=ALL-UNNAMED
      *
      * @param args the command line arguments
      */
     public static void main(final String[] args) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            @Override
-            public void run() {
-                try {
-                    new Testapplication().setVisible(true);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        });
+        SwingUtilities.invokeLater(Testapplication::new);
     }
 }
+

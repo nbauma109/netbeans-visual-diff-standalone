@@ -9,7 +9,6 @@ package de.cismet.custom.visualdiff;
 
 import org.netbeans.api.diff.Diff;
 import org.netbeans.api.diff.DiffView;
-import org.netbeans.api.diff.Difference;
 import org.netbeans.api.diff.StreamSource;
 
 import java.awt.BorderLayout;
@@ -19,9 +18,8 @@ import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
-import java.io.Reader;
-import java.io.StringReader;
-import java.io.Writer;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 
 import javax.imageio.ImageIO;
@@ -41,6 +39,8 @@ public class DiffPanel extends javax.swing.JPanel {
     //~ Instance fields --------------------------------------------------------
 
     private static final long serialVersionUID = 1L;
+    
+    private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("de/cismet/custom/visualdiff/Bundle", Locale.ENGLISH);
 
     protected DiffView view;
     protected FileToDiff left;
@@ -278,8 +278,7 @@ public class DiffPanel extends javax.swing.JPanel {
         pnlFilesMissing.setLayout(new java.awt.BorderLayout());
 
         txtFilesMissing.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtFilesMissing.setText(org.openide.util.NbBundle.getMessage(
-                DiffPanel.class,
+        txtFilesMissing.setText(BUNDLE.getString(
                 "DiffPanel.txtFilesMissing.text")); // NOI18N
         pnlFilesMissing.add(txtFilesMissing, java.awt.BorderLayout.CENTER);
 
@@ -359,141 +358,6 @@ public class DiffPanel extends javax.swing.JPanel {
             if (parent.getLayout() instanceof CardLayout) {
                 ((CardLayout)parent.getLayout()).show(parent, cardToShow);
             }
-        }
-    }
-
-    /**
-     * A wrapper class for the necessary information of the left or right part of Netbeans' diff component.
-     *
-     * @version  $Revision$, $Date$
-     */
-    protected static class FileToDiff {
-
-        //~ Instance fields ----------------------------------------------------
-
-        private String content;
-        private String mimetype;
-        private String title;
-
-        //~ Constructors -------------------------------------------------------
-
-        /**
-         * Creates a new FileToDiff object.
-         *
-         * @param  content   The content to diff.
-         * @param  mimetype  The mimetype of the content.
-         * @param  title     The title to display.
-         */
-        public FileToDiff(final String content, final String mimetype, final String title) {
-            this.content = content;
-            this.mimetype = mimetype;
-            this.title = title;
-        }
-
-        //~ Methods ------------------------------------------------------------
-
-        /**
-         * DOCUMENT ME!
-         *
-         * @return  DOCUMENT ME!
-         */
-        public String getContent() {
-            return content;
-        }
-
-        /**
-         * DOCUMENT ME!
-         *
-         * @param  content  DOCUMENT ME!
-         */
-        public void setContent(final String content) {
-            this.content = content;
-        }
-
-        /**
-         * DOCUMENT ME!
-         *
-         * @return  DOCUMENT ME!
-         */
-        public String getMimetype() {
-            return mimetype;
-        }
-
-        /**
-         * DOCUMENT ME!
-         *
-         * @param  mimetype  DOCUMENT ME!
-         */
-        public void setMimetype(final String mimetype) {
-            this.mimetype = mimetype;
-        }
-
-        /**
-         * DOCUMENT ME!
-         *
-         * @return  DOCUMENT ME!
-         */
-        public String getTitle() {
-            return title;
-        }
-
-        /**
-         * DOCUMENT ME!
-         *
-         * @param  title  DOCUMENT ME!
-         */
-        public void setTitle(final String title) {
-            this.title = title;
-        }
-    }
-
-    /**
-     * Custom StreamSource implementation which handles FileToDiff objects.
-     *
-     * @version  $Revision$, $Date$
-     */
-    protected static class MyStreamSource extends StreamSource {
-
-        //~ Instance fields ----------------------------------------------------
-
-        private FileToDiff fileToDiff;
-
-        //~ Constructors -------------------------------------------------------
-
-        /**
-         * Creates a new MyStreamSource object.
-         *
-         * @param  fileToDiff  The FileToDiff object to wrap.
-         */
-        public MyStreamSource(final FileToDiff fileToDiff) {
-            this.fileToDiff = fileToDiff;
-        }
-
-        //~ Methods ------------------------------------------------------------
-
-        @Override
-        public String getName() {
-            return "name";
-        }
-
-        @Override
-        public String getTitle() {
-            return fileToDiff.getTitle();
-        }
-
-        @Override
-        public String getMIMEType() {
-            return fileToDiff.getMimetype();
-        }
-
-        @Override
-        public Reader createReader() throws IOException {
-            return new StringReader(fileToDiff.getContent());
-        }
-
-        @Override
-        public Writer createWriter(final Difference[] conflicts) throws IOException {
-            return null;
         }
     }
 }
