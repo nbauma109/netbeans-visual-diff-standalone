@@ -13,6 +13,7 @@ import org.netbeans.api.diff.StreamSource;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.EventQueue;
 import java.awt.Image;
@@ -28,6 +29,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.SwingWorker;
+import javax.swing.UIManager;
 
 /**
  * This panel allows the embedding of Netbeans' diff component.
@@ -36,12 +38,18 @@ import javax.swing.SwingWorker;
  */
 public class DiffPanel extends javax.swing.JPanel {
 
-    //~ Instance fields --------------------------------------------------------
-
+    //~ Static fields --------------------------------------------------------
     private static final long serialVersionUID = 1L;
     
     private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("de/cismet/custom/visualdiff/Bundle", Locale.ENGLISH);
 
+    static {
+        UIManager.put( "nb.diff.added.color",  new Color(229, 242, 229));
+        UIManager.put( "nb.diff.deleted.color",  new Color(255, 229, 229));
+        UIManager.put( "nb.diff.changed.color",  new Color(229, 242, 255));
+    }
+
+    //~ Instance fields --------------------------------------------------------
     protected DiffView view;
     protected FileToDiff left;
     protected FileToDiff right;

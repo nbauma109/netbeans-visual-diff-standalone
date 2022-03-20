@@ -129,6 +129,10 @@
 					<groupId>org.netbeans.api</groupId>
 					<artifactId>org-openide-io</artifactId>
 				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-netbeans-api-scripting</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
@@ -162,6 +166,10 @@
 				<exclusion>
 					<groupId>org.netbeans.api</groupId>
 					<artifactId>org-openide-filesystems-nb</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-netbeans-api-lsp</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
@@ -322,6 +330,14 @@
 					<groupId>org.netbeans.api</groupId>
 					<artifactId>org-openide-io</artifactId>
 				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-netbeans-api-scripting</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.netbeans.api</groupId>
+					<artifactId>org-netbeans-api-lsp</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 	</dependencies>
@@ -329,7 +345,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
-		<netbeans.version>RELEASE90</netbeans.version>
+		<netbeans.version>RELEASE130</netbeans.version>
 		<project.scm.id>github.com</project.scm.id>
 	</properties>
 </project>
