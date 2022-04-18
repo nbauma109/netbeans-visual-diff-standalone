@@ -167,10 +167,6 @@
 					<groupId>org.netbeans.api</groupId>
 					<artifactId>org-openide-filesystems-nb</artifactId>
 				</exclusion>
-				<exclusion>
-					<groupId>org.netbeans.api</groupId>
-					<artifactId>org-netbeans-api-lsp</artifactId>
-				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
@@ -333,10 +329,6 @@
 				<exclusion>
 					<groupId>org.netbeans.api</groupId>
 					<artifactId>org-netbeans-api-scripting</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.netbeans.api</groupId>
-					<artifactId>org-netbeans-api-lsp</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
