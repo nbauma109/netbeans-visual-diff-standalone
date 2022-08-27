@@ -3,7 +3,7 @@
 
 	<groupId>com.github.nbauma109</groupId>
 	<artifactId>netbeans-visual-diff-standalone</artifactId>
-	<version>2.0.30-SNAPSHOT</version>
+	<version>2.0.31-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>NetBeans Visual Diff Standalone</name>
@@ -28,11 +28,6 @@
 	</scm>
 
 	<repositories>
-		<repository>
-			<id>netbeans</id>
-			<name>NetBeans</name>
-			<url>https://netbeans.apidesign.org/maven2/</url>
-		</repository>
 		<repository>
 			<id>jitpack.io</id>
 			<url>https://jitpack.io</url>
@@ -342,7 +337,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
-		<netbeans.version>RELEASE90</netbeans.version>
+		<netbeans.version>RELEASE140</netbeans.version>
 		<project.scm.id>github.com</project.scm.id>
 	</properties>
 </project>
