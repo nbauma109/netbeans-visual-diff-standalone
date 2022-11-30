@@ -337,7 +337,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
-		<netbeans.version>RELEASE150</netbeans.version>
+		<netbeans.version>RELEASE160</netbeans.version>
 		<project.scm.id>github.com</project.scm.id>
 	</properties>
 </project>
