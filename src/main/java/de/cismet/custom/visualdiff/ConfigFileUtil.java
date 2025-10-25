@@ -48,6 +48,11 @@ public class ConfigFileUtil {
                     return new File(roamingConfigHomeFile, CONFIG_FILENAME);
                 }
             }
+        } else if (PlatformService.getInstance().isMac()) {
+            File preferencesDir = new File(System.getProperty("user.home"), "Library/Preferences");
+            if (preferencesDir.exists()) {
+                return new File(preferencesDir, CONFIG_FILENAME);
+            }
         }
 
         return new File(CONFIG_FILENAME);
