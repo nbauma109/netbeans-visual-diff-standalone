@@ -8,7 +8,9 @@
 NetBeans Visual Diff Standalone
 ===============================
 
-Use the NetBeans diff component in any Java Swing project.
+Use the NetBeans diff component in any Java Swing project ! 
+
+Supports Java syntax coloring and uses Eclipse theme.
 
 ![image](https://user-images.githubusercontent.com/9403560/152738948-847f1b5a-8ede-4375-addb-10076b6e743a.png)
 
