@@ -80,8 +80,6 @@ public class Testapplication extends javax.swing.JFrame {
     //~ Constructors -----------------------------------------------------------
     /**
      * Creates a new Testapplication object.
-     *
-     * @throws Exception DOCUMENT ME!
      */
     public Testapplication() {
         initComponents();
