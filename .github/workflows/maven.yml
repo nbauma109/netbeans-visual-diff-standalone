@@ -22,3 +22,4 @@ jobs:
         JAVA_HOME: /usr/lib/jvm/java-17-openjdk/
       with:
        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+       maven-options: "-Dgpg.skip=true"
