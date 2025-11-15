@@ -105,7 +105,7 @@ public class MyColoringStorage implements StorageDescription<String, AttributeSe
      * Returns true if JD-GUI config file has
      * XPath //UIMainWindowPreferencesProvider.darkMode/text() = true
      */
-    private boolean isUsingDarkMode() {
+    public static boolean isUsingDarkMode() {
         File configFile = ConfigFileUtil.getJDGUIConfigFile();
         if (configFile == null || !configFile.isFile()) {
             return false; // no config file found
