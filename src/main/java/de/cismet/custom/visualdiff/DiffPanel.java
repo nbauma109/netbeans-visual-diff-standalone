@@ -44,6 +44,7 @@ public class DiffPanel extends javax.swing.JPanel {
     private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("de/cismet/custom/visualdiff/Bundle", Locale.ENGLISH);
 
     static {
+        EditorTweaks.disableTextLimitLine();
         HighlightOverrides.applyFromTheme();
         if (MyColoringStorage.isUsingDarkMode()) {
             UIManager.put("nb.diff.added.color", new Color(40, 80, 40));
@@ -54,7 +55,7 @@ public class DiffPanel extends javax.swing.JPanel {
             UIManager.put("nb.diff.deleted.color", new Color(255, 229, 229));
             UIManager.put("nb.diff.changed.color", new Color(229, 242, 255));
         }
-    }
+   }
 
     //~ Instance fields --------------------------------------------------------
     protected DiffView view;
