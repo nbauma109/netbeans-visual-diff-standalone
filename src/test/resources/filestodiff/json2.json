@@ -1,7 +1,7 @@
 {
     "$self": "/CIDS.SPH_SPIELHALLE/4",
     "id": 4,
-    "geometrie": {
+    "geometry": {
         "$self": "/CIDS.GEOM/25",
         "id": 25,
         "geo_field": "SRID=25832;POINT (374269.560394419 5676560.27912855)"
@@ -40,7 +40,7 @@
         "spielhallen": [{
                 "$self": "/CIDS.SPH_SPIELHALLE/2",
                 "id": 2,
-                "geometrie": {
+                "geometry": {
                     "$self": "/CIDS.GEOM/23",
                     "id": 23,
                     "geo_field": "SRID=25832;POINT (375418.996250785 5681914.05249435)"
@@ -79,7 +79,7 @@
             }, {
                 "$self": "/CIDS.SPH_SPIELHALLE/3",
                 "id": 3,
-                "geometrie": {
+                "geometry": {
                     "$self": "/CIDS.GEOM/24",
                     "id": 24,
                     "geo_field": "SRID=25832;POINT (374219.656230459 5676613.2131311)"
@@ -110,7 +110,7 @@
             }, {
                 "$self": "/CIDS.SPH_SPIELHALLE/4",
                 "id": 4,
-                "geometrie": {
+                "geometry": {
                     "$self": "/CIDS.GEOM/25",
                     "id": 25,
                     "geo_field": "SRID=25832;POINT (374269.560394419 5676560.27912855)"
