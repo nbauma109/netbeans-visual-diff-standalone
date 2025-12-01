@@ -2,9 +2,9 @@
  * *************************************************
  *
  * cismet GmbH, Saarbruecken, Germany
- * 
+ *
 * ... and it just works.
- * 
+ *
 ***************************************************
  */
 package de.cismet.custom.visualdiff;
@@ -50,7 +50,7 @@ public class Testapplication extends javax.swing.JFrame {
     private static final long serialVersionUID = 1L;
 
     private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("de/cismet/custom/visualdiff/Bundle", Locale.ENGLISH);
-    
+
     //~ Static fields/initializers ---------------------------------------------
     private static final String MIMETYPE_HTML = "text/html";
     private static final String MIMETYPE_JAVA = "text/x-java";
@@ -87,7 +87,7 @@ public class Testapplication extends javax.swing.JFrame {
         final File file2 = new File(FILENAME2_TEXT);
         try (FileReader reader1 = new FileReader(file1, StandardCharsets.UTF_8);
              FileReader reader2 = new FileReader(file2, StandardCharsets.UTF_8)) {
-    
+
             pnlDiff = new DiffPanel(this);
             pnlDiff.setLeftAndRight(getLines(reader1),
                     MIMETYPE_TEXT,
@@ -257,8 +257,8 @@ public class Testapplication extends javax.swing.JFrame {
 
     /**
      * Run with VM arguments :
-     * --add-opens java.base/java.net=ALL-UNNAMED 
-     * --add-opens java.desktop/javax.swing.text=ALL-UNNAMED 
+     * --add-opens java.base/java.net=ALL-UNNAMED
+     * --add-opens java.desktop/javax.swing.text=ALL-UNNAMED
      * --add-opens java.prefs/java.util.prefs=ALL-UNNAMED
      * --add-opens java.desktop/javax.swing.plaf.basic=ALL-UNNAMED
      *

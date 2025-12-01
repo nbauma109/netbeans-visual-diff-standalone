@@ -72,8 +72,12 @@ public class MyColoringStorage implements StorageDescription<String, AttributeSe
             if (dot > 0) {
                 String suffix = key.substring(dot + 1);
                 name = key.substring(0, dot);
-                if ("bg".equalsIgnoreCase(suffix)) isBg = true;
-                if ("fg".equalsIgnoreCase(suffix)) isFg = true;
+                if ("bg".equalsIgnoreCase(suffix)) {
+                    isBg = true;
+                }
+                if ("fg".equalsIgnoreCase(suffix)) {
+                    isFg = true;
+                }
             } else {
                 isFg = true; // legacy form was foreground-only
             }
@@ -139,7 +143,9 @@ public class MyColoringStorage implements StorageDescription<String, AttributeSe
         String s = hex.startsWith("0x") || hex.startsWith("0X") ? hex.substring(2) : hex;
         long v = Long.parseUnsignedLong(s, 16);
         // If RGB provided (6 hex digits), force opaque
-        if (s.length() == 6) v |= 0xFF000000L;
+        if (s.length() == 6) {
+            v |= 0xFF000000L;
+        }
         return new Color((int) v, true);
     }
 

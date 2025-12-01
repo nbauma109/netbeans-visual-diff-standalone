@@ -42,6 +42,7 @@ public class Testapplication extends javax.swing.JFrame {
 
     //~ Static fields/initializers ---------------------------------------------
 
+    private static final long serialVersionUID = 1L;
     private static final String MIMETYPE_HTML = "text/html";
     private static final String MIMETYPE_JAVA = "text/x-java";
     private static final String MIMETYPE_JSON = "text/javascript";
@@ -82,7 +83,7 @@ public class Testapplication extends javax.swing.JFrame {
 
         final File file1 = new File(FILENAME1_JSON);
         final File file2 = new File(FILENAME2_JSON);
-        
+
         System.out.println(file1.toString());
         System.out.println(file2.toString());
 
@@ -111,14 +112,12 @@ public class Testapplication extends javax.swing.JFrame {
         final StringBuilder result = new StringBuilder();
         final BufferedReader bufferedReader = new BufferedReader(reader);
 
-        try {
+        try (bufferedReader) {
             String line = null;
             while ((line = bufferedReader.readLine()) != null) {
                 result.append(line);
                 result.append("\n");
             }
-        } finally {
-            bufferedReader.close();
         }
 
         return result.toString();
@@ -145,25 +144,13 @@ public class Testapplication extends javax.swing.JFrame {
         btnPrevDifference.setText(org.openide.util.NbBundle.getMessage(
                 Testapplication.class,
                 "Testapplication.btnPrevDifference.text")); // NOI18N
-        btnPrevDifference.addActionListener(new java.awt.event.ActionListener() {
-
-                @Override
-                public void actionPerformed(final java.awt.event.ActionEvent evt) {
-                    btnPrevDifferenceActionPerformed(evt);
-                }
-            });
+        btnPrevDifference.addActionListener(this::btnPrevDifferenceActionPerformed);
         pnlControls.add(btnPrevDifference);
 
         btnNextDifference.setText(org.openide.util.NbBundle.getMessage(
                 Testapplication.class,
                 "Testapplication.btnNextDifference.text")); // NOI18N
-        btnNextDifference.addActionListener(new java.awt.event.ActionListener() {
-
-                @Override
-                public void actionPerformed(final java.awt.event.ActionEvent evt) {
-                    btnNextDifferenceActionPerformed(evt);
-                }
-            });
+        btnNextDifference.addActionListener(this::btnNextDifferenceActionPerformed);
         pnlControls.add(btnNextDifference);
 
         separator.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -173,49 +160,25 @@ public class Testapplication extends javax.swing.JFrame {
         btnDiffHTMLFiles.setText(org.openide.util.NbBundle.getMessage(
                 Testapplication.class,
                 "Testapplication.btnDiffHTMLFiles.text")); // NOI18N
-        btnDiffHTMLFiles.addActionListener(new java.awt.event.ActionListener() {
-
-                @Override
-                public void actionPerformed(final java.awt.event.ActionEvent evt) {
-                    btnDiffHTMLFilesActionPerformed(evt);
-                }
-            });
+        btnDiffHTMLFiles.addActionListener(this::btnDiffHTMLFilesActionPerformed);
         pnlControls.add(btnDiffHTMLFiles);
 
         btnDiffJavaFiles.setText(org.openide.util.NbBundle.getMessage(
                 Testapplication.class,
                 "Testapplication.btnDiffJavaFiles.text")); // NOI18N
-        btnDiffJavaFiles.addActionListener(new java.awt.event.ActionListener() {
-
-                @Override
-                public void actionPerformed(final java.awt.event.ActionEvent evt) {
-                    btnDiffJavaFilesActionPerformed(evt);
-                }
-            });
+        btnDiffJavaFiles.addActionListener(this::btnDiffJavaFilesActionPerformed);
         pnlControls.add(btnDiffJavaFiles);
 
         btnDiffJSONFiles.setText(org.openide.util.NbBundle.getMessage(
                 Testapplication.class,
                 "Testapplication.btnDiffJSONFiles.text")); // NOI18N
-        btnDiffJSONFiles.addActionListener(new java.awt.event.ActionListener() {
-
-                @Override
-                public void actionPerformed(final java.awt.event.ActionEvent evt) {
-                    btnDiffJSONFilesActionPerformed(evt);
-                }
-            });
+        btnDiffJSONFiles.addActionListener(this::btnDiffJSONFilesActionPerformed);
         pnlControls.add(btnDiffJSONFiles);
 
         btnDiffTextFiles.setText(org.openide.util.NbBundle.getMessage(
                 Testapplication.class,
                 "Testapplication.btnDiffTextFiles.text")); // NOI18N
-        btnDiffTextFiles.addActionListener(new java.awt.event.ActionListener() {
-
-                @Override
-                public void actionPerformed(final java.awt.event.ActionEvent evt) {
-                    btnDiffTextFilesActionPerformed(evt);
-                }
-            });
+        btnDiffTextFiles.addActionListener(this::btnDiffTextFilesActionPerformed);
         pnlControls.add(btnDiffTextFiles);
 
         getContentPane().add(pnlControls, java.awt.BorderLayout.SOUTH);
@@ -340,16 +303,12 @@ public class Testapplication extends javax.swing.JFrame {
      * @param  args  the command line arguments
      */
     public static void main(final String[] args) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-                @Override
-                public void run() {
-                    try {
-                        new Testapplication().setVisible(true);
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-                }
-            });
+        java.awt.EventQueue.invokeLater(() -> {
+            try {
+                new Testapplication().setVisible(true);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
     }
 }
