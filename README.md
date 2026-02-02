@@ -1,4 +1,4 @@
-Forked from GeertjanWielenga/netbeans-visual-diff-standalone
+Forked from [GeertjanWielenga/netbeans-visual-diff-standalone](https://github.com/GeertjanWielenga/netbeans-visual-diff-standalone)
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.nbauma109/netbeans-visual-diff-standalone.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/io.github.nbauma109/netbeans-visual-diff-standalone)
 [![CodeQL](https://github.com/nbauma109/netbeans-visual-diff-standalone/actions/workflows/codeql-analysis.yml/badge.svg?branch=master)](https://github.com/nbauma109/netbeans-visual-diff-standalone/actions/workflows/codeql-analysis.yml)
