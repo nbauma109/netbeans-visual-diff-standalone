@@ -4,6 +4,7 @@
 [![CodeQL](https://github.com/nbauma109/netbeans-visual-diff-standalone/actions/workflows/codeql-analysis.yml/badge.svg?branch=master)](https://github.com/nbauma109/netbeans-visual-diff-standalone/actions/workflows/codeql-analysis.yml)
 [![Maven Release](https://github.com/nbauma109/netbeans-visual-diff-standalone/actions/workflows/maven.yml/badge.svg)](https://github.com/nbauma109/netbeans-visual-diff-standalone/actions/workflows/maven.yml)
 [![Github Release](https://github.com/nbauma109/netbeans-visual-diff-standalone/actions/workflows/release.yml/badge.svg)](https://github.com/nbauma109/netbeans-visual-diff-standalone/actions/workflows/release.yml)
+[![codecov](https://codecov.io/gh/nbauma109/netbeans-visual-diff-standalone/graph/badge.svg)](https://codecov.io/gh/nbauma109/netbeans-visual-diff-standalone)
 
 
 NetBeans Visual Diff Standalone

@@ -75,6 +75,50 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.15.0</version>
+        <configuration>
+          <proc>full</proc>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.5.4</version>
+        <configuration>
+          <useModulePath>false</useModulePath>
+          <argLine>@{jacocoArgLine} --add-opens java.base/java.net=ALL-UNNAMED
+            --add-opens java.desktop/javax.swing.text=ALL-UNNAMED
+            --add-opens java.prefs/java.util.prefs=ALL-UNNAMED
+            --add-opens
+            java.desktop/javax.swing.plaf.basic=ALL-UNNAMED</argLine>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.14</version>
+        <executions>
+          <execution>
+            <id>prepare-agent</id>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+            <configuration>
+              <propertyName>jacocoArgLine</propertyName>
+            </configuration>
+          </execution>
+          <execution>
+            <id>report</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -170,11 +214,31 @@
           <groupId>org.netbeans.api</groupId>
           <artifactId>org-netbeans-api-scripting</artifactId>
         </exclusion>
+        <exclusion>
+          <groupId>org.netbeans.modules</groupId>
+          <artifactId>org-netbeans-modules-options-editor</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.netbeans.api</groupId>
+          <artifactId>org-netbeans-modules-autoupdate-services</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
       <groupId>org.netbeans.modules</groupId>
       <artifactId>org-netbeans-modules-editor-mimelookup-impl</artifactId>
+      <version>${netbeans.version}</version>
+      <scope>runtime</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.netbeans.api</groupId>
+          <artifactId>org-netbeans-modules-autoupdate-services</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.netbeans.modules</groupId>
+      <artifactId>org-openide-util-ui-svg</artifactId>
       <version>${netbeans.version}</version>
       <scope>runtime</scope>
     </dependency>
@@ -203,6 +267,10 @@
         <exclusion>
           <groupId>org.netbeans.api</groupId>
           <artifactId>org-openide-filesystems-nb</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.netbeans.api</groupId>
+          <artifactId>org-netbeans-modules-autoupdate-services</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -367,15 +435,51 @@
           <groupId>org.netbeans.api</groupId>
           <artifactId>org-netbeans-api-scripting</artifactId>
         </exclusion>
+        <exclusion>
+          <groupId>org.netbeans.modules</groupId>
+          <artifactId>org-netbeans-modules-options-editor</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.netbeans.api</groupId>
+          <artifactId>org-netbeans-modules-autoupdate-services</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.netbeans.modules</groupId>
+      <artifactId>org-netbeans-modules-editor-settings-storage</artifactId>
+      <version>${netbeans.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.netbeans.modules</groupId>
+          <artifactId>org-netbeans-modules-options-keymap</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.netbeans.api</groupId>
+          <artifactId>org-netbeans-modules-autoupdate-services</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
     <dependency>
       <groupId>org.netbeans.modules</groupId>
       <artifactId>org-netbeans-modules-editor-search</artifactId>
       <version>${netbeans.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.netbeans.api</groupId>
+          <artifactId>org-netbeans-modules-autoupdate-services</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.13.4</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
   <properties>
+    <jacocoArgLine></jacocoArgLine>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
