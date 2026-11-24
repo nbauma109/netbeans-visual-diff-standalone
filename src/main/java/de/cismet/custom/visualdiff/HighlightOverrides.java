@@ -42,10 +42,6 @@ public final class HighlightOverrides {
     public static void applyFromTheme() {
         Properties theme = loadTheme();
 
-        if (theme == null) {
-            return;
-        }
-
         Color caretRow = parseColor(theme.getProperty("highlight-caret-row.bg"));
         Color selection = parseColor(theme.getProperty("selection.bg"));
 
@@ -92,13 +88,12 @@ public final class HighlightOverrides {
 
         Properties p = new Properties();
         try (InputStream in = HighlightOverrides.class.getResourceAsStream(resource)) {
-            if (in == null) {
-                return null;
+            if (in != null) {
+                p.load(in);
             }
-            p.load(in);
             return p;
         } catch (IOException ex) {
-            return null;
+            return new Properties();
         }
     }
 

@@ -24,7 +24,7 @@ public class MyStreamSource extends StreamSource {
 
     //~ Instance fields ----------------------------------------------------
 
-    private FileToDiff fileToDiff;
+    private final FileToDiff fileToDiff;
 
     //~ Constructors -------------------------------------------------------
 

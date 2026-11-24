@@ -22,6 +22,9 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.SwingUtilities;
 
 /**
@@ -69,12 +72,6 @@ public class Testapplication extends javax.swing.JFrame {
     //~ Instance fields --------------------------------------------------------
     private DiffPanel pnlDiff;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDiffHTMLFiles;
-    private javax.swing.JButton btnDiffJSONFiles;
-    private javax.swing.JButton btnDiffJavaFiles;
-    private javax.swing.JButton btnDiffTextFiles;
-    private javax.swing.JPanel pnlControls;
-    private javax.swing.JSeparator separator;
     // End of variables declaration//GEN-END:variables
 
     //~ Constructors -----------------------------------------------------------
@@ -126,12 +123,12 @@ public class Testapplication extends javax.swing.JFrame {
      */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        pnlControls = new javax.swing.JPanel();
-        separator = new javax.swing.JSeparator();
-        btnDiffHTMLFiles = new javax.swing.JButton();
-        btnDiffJavaFiles = new javax.swing.JButton();
-        btnDiffJSONFiles = new javax.swing.JButton();
-        btnDiffTextFiles = new javax.swing.JButton();
+        JPanel pnlControls = new JPanel();
+        JSeparator separator = new JSeparator();
+        JButton btnDiffHTMLFiles = new JButton();
+        JButton btnDiffJavaFiles = new JButton();
+        JButton btnDiffJSONFiles = new JButton();
+        JButton btnDiffTextFiles = new JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle(BUNDLE.getString("Testapplication.title")); // NOI18N

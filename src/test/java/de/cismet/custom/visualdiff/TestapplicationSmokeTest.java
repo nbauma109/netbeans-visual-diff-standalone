@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 import org.netbeans.api.lexer.Language;
 
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.GraphicsEnvironment;
 import java.io.ByteArrayOutputStream;
 import java.io.BufferedReader;
@@ -14,12 +16,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
@@ -157,19 +160,31 @@ class TestapplicationSmokeTest {
         return contents;
     }
 
-    private static void click(Testapplication application, String fieldName) throws Exception {
-        JButton button = button(application, fieldName);
+    private static void click(Testapplication application, String componentName) throws Exception {
+        ResourceBundle bundle = ResourceBundle.getBundle("de/cismet/custom/visualdiff/Bundle", Locale.ENGLISH);
+        String label = bundle.getString("Testapplication." + componentName + ".text");
         onEdt(() -> {
+            JButton button = findButton(application, label);
+            Assertions.assertNotNull(button, "Missing button: " + label);
             button.doClick();
             return null;
         });
         flushEdt();
     }
 
-    private static JButton button(Testapplication application, String fieldName) throws Exception {
-        Field field = Testapplication.class.getDeclaredField(fieldName);
-        field.setAccessible(true);
-        return (JButton) field.get(application);
+    private static JButton findButton(Container container, String label) {
+        for (Component component : container.getComponents()) {
+            if (component instanceof JButton button && label.equals(button.getText())) {
+                return button;
+            }
+            if (component instanceof Container nested) {
+                JButton button = findButton(nested, label);
+                if (button != null) {
+                    return button;
+                }
+            }
+        }
+        return null;
     }
 
     private static void pause() throws Exception {
