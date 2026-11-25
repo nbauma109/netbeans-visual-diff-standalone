@@ -250,14 +250,14 @@ public class DiffPanel extends javax.swing.JPanel {
     }
 
     /**
-     * Helper method to verify if a given content is valid. Content is valid, if it contains at least one character.
+     * Helper method to verify if a given content is valid. Content is valid if it contains at least one non-whitespace character.
      *
      * @param   content  The content to verify.
      *
      * @return  A flag indicating whether the given content is valid or not.
      */
     protected static boolean isValidContent(final String content) {
-        return (content != null) && (content.trim().length() > 0);
+        return content != null && !content.isBlank();
     }
 
     /**
