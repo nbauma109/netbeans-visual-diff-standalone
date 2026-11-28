@@ -61,35 +61,7 @@ public class MyColoringStorage implements StorageDescription<String, AttributeSe
         Map<String, SimpleAttributeSet> pending = new HashMap<>();
 
         for (Entry<Object, Object> e : theme.entrySet()) {
-            String key = String.valueOf(e.getKey()).trim();
-            String value = String.valueOf(e.getValue()).trim();
-
-            String name = key;
-            boolean isBg = false;
-            boolean isFg = false;
-
-            int dot = key.lastIndexOf('.');
-            if (dot > 0) {
-                String suffix = key.substring(dot + 1);
-                name = key.substring(0, dot);
-                if ("bg".equalsIgnoreCase(suffix)) {
-                    isBg = true;
-                }
-                if ("fg".equalsIgnoreCase(suffix)) {
-                    isFg = true;
-                }
-            } else {
-                isFg = true; // legacy form was foreground-only
-            }
-
-            Color c = argb(value);
-
-            SimpleAttributeSet over = pending.computeIfAbsent(name, n -> new SimpleAttributeSet());
-            if (isBg) {
-                over.addAttribute(StyleConstants.Background, c);
-            } else if (isFg) {
-                over.addAttribute(StyleConstants.Foreground, c);
-            }
+            addThemeOverride(pending, e);
         }
 
         for (Entry<String, SimpleAttributeSet> e : pending.entrySet()) {
@@ -103,6 +75,38 @@ public class MyColoringStorage implements StorageDescription<String, AttributeSe
         }
 
         return colorMap;
+    }
+
+    private static void addThemeOverride(Map<String, SimpleAttributeSet> pending, Entry<Object, Object> e) {
+        String key = String.valueOf(e.getKey()).trim();
+        String value = String.valueOf(e.getValue()).trim();
+
+        String name = key;
+        boolean isBg = false;
+        boolean isFg = false;
+
+        int dot = key.lastIndexOf('.');
+        if (dot > 0) {
+            String suffix = key.substring(dot + 1);
+            name = key.substring(0, dot);
+            if ("bg".equalsIgnoreCase(suffix)) {
+                isBg = true;
+            }
+            if ("fg".equalsIgnoreCase(suffix)) {
+                isFg = true;
+            }
+        } else {
+            isFg = true; // legacy form was foreground-only
+        }
+
+        Color c = argb(value);
+
+        SimpleAttributeSet over = pending.computeIfAbsent(name, n -> new SimpleAttributeSet());
+        if (isBg) {
+            over.addAttribute(StyleConstants.Background, c);
+        } else if (isFg) {
+            over.addAttribute(StyleConstants.Foreground, c);
+        }
     }
 
     /**

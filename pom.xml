@@ -40,6 +40,29 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>io.github.nbauma109</groupId>
+        <artifactId>static-analysis-maven-plugin</artifactId>
+        <version>${static-analysis.version}</version>
+        <configuration>
+          <profile>sonar-way</profile>
+          <failOnViolation>true</failOnViolation>
+        </configuration>
+        <executions>
+          <execution>
+            <id>check-main-sources</id>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>check-test-sources</id>
+            <goals>
+              <goal>check-tests</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
         <version>3.4.0</version>
@@ -482,6 +505,7 @@
     <jacocoArgLine />
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.release>21</maven.compiler.release>
+    <static-analysis.version>0.1.4</static-analysis.version>
     <netbeans.version>RELEASE320</netbeans.version>
     <project.scm.id>github.com</project.scm.id>
   </properties>

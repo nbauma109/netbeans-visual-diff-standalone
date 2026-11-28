@@ -4,8 +4,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
+import org.netbeans.api.diff.DiffView;
 import org.netbeans.api.lexer.Language;
 
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.GraphicsEnvironment;
 import java.io.ByteArrayOutputStream;
 import java.io.BufferedReader;
@@ -14,12 +17,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
@@ -29,12 +33,14 @@ import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 
 class TestapplicationSmokeTest {
 
     private static final String JAVA_MIME_TYPE = "text/x-java";
     private static final String LANGUAGE_PROVIDER_SERVICE = "META-INF/services/org.netbeans.spi.lexer.LanguageProvider";
-    private static final Duration WAIT_BETWEEN_CLICKS = Duration.ofMillis(1500);
+    private static final int DIFF_POLL_INTERVAL_MILLISECONDS = 50;
+    private static final int DIFF_TIMEOUT_SECONDS = 15;
     private static final Pattern EXCEPTION_PATTERN = Pattern.compile(
             "(?m)^(Exception in thread .+|Caused by: .+|[\\w.$]+(?:Exception|Error): .+)$");
     private static final Pattern SVG_WARNING_PATTERN = Pattern.compile(
@@ -72,20 +78,18 @@ class TestapplicationSmokeTest {
             });
 
             application = onEdt(Testapplication::new);
-            pause();
+            Testapplication activeApplication = application;
+            DiffPanel panel = onEdt(() -> findDiffPanel(activeApplication));
+            waitForDiff(panel, null);
 
-            click(application, "btnDiffHTMLFiles");
-            pause();
+            click(application, panel, "btnDiffHTMLFiles");
 
-            click(application, "btnDiffJavaFiles");
-            pause();
+            click(application, panel, "btnDiffJavaFiles");
             assertJavaLanguageProviderActivated();
 
-            click(application, "btnDiffJSONFiles");
-            pause();
+            click(application, panel, "btnDiffJSONFiles");
 
-            click(application, "btnDiffTextFiles");
-            pause();
+            click(application, panel, "btnDiffTextFiles");
 
             flushEdt();
         } finally {
@@ -157,25 +161,63 @@ class TestapplicationSmokeTest {
         return contents;
     }
 
-    private static void click(Testapplication application, String fieldName) throws Exception {
-        JButton button = button(application, fieldName);
-        onEdt(() -> {
+    private static void click(Testapplication application, DiffPanel panel, String componentName) throws Exception {
+        ResourceBundle bundle = ResourceBundle.getBundle("de/cismet/custom/visualdiff/Bundle", Locale.ENGLISH);
+        String label = bundle.getString("Testapplication." + componentName + ".text");
+        DiffView previousView = onEdt(() -> {
+            DiffView currentView = panel.getDiffView();
+            JButton button = findButton(application, label);
+            Assertions.assertNotNull(button, "Missing button: " + label);
             button.doClick();
-            return null;
+            return currentView;
         });
-        flushEdt();
+        waitForDiff(panel, previousView);
     }
 
-    private static JButton button(Testapplication application, String fieldName) throws Exception {
-        Field field = Testapplication.class.getDeclaredField(fieldName);
-        field.setAccessible(true);
-        return (JButton) field.get(application);
+    private static DiffPanel findDiffPanel(Testapplication application) {
+        for (Component component : application.getContentPane().getComponents()) {
+            if (component instanceof DiffPanel panel) {
+                return panel;
+            }
+        }
+        throw new AssertionError("Missing diff panel");
     }
 
-    private static void pause() throws Exception {
-        flushEdt();
-        Thread.sleep(WAIT_BETWEEN_CLICKS.toMillis());
-        flushEdt();
+    private static JButton findButton(Container container, String label) {
+        for (Component component : container.getComponents()) {
+            if (component instanceof JButton button && label.equals(button.getText())) {
+                return button;
+            }
+            if (component instanceof Container nested) {
+                JButton button = findButton(nested, label);
+                if (button != null) {
+                    return button;
+                }
+            }
+        }
+        return null;
+    }
+
+    private static void waitForDiff(DiffPanel panel, DiffView previousView) throws Exception {
+        CompletableFuture<Void> completed = new CompletableFuture<>();
+        Timer timer = onEdt(() -> {
+            Timer poll = new Timer(DIFF_POLL_INTERVAL_MILLISECONDS, event -> {
+                DiffView currentView = panel.getDiffView();
+                if (currentView != null && currentView != previousView) {
+                    completed.complete(null);
+                }
+            });
+            poll.start();
+            return poll;
+        });
+        try {
+            completed.get(DIFF_TIMEOUT_SECONDS, TimeUnit.SECONDS);
+        } finally {
+            onEdt(() -> {
+                timer.stop();
+                return null;
+            });
+        }
     }
 
     private static void flushEdt() throws Exception {

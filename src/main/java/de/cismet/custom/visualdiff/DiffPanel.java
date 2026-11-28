@@ -22,12 +22,17 @@ import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.concurrent.ExecutionException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingWorker;
 import javax.swing.UIManager;
 
@@ -40,6 +45,7 @@ public class DiffPanel extends javax.swing.JPanel {
 
     //~ Static fields --------------------------------------------------------
     private static final long serialVersionUID = 1L;
+    private static final Logger LOGGER = Logger.getLogger(DiffPanel.class.getName());
 
     private static final ResourceBundle BUNDLE = ResourceBundle.getBundle("de/cismet/custom/visualdiff/Bundle", Locale.ENGLISH);
 
@@ -58,22 +64,18 @@ public class DiffPanel extends javax.swing.JPanel {
    }
 
     //~ Instance fields --------------------------------------------------------
-    protected DiffView view;
-    protected FileToDiff left;
-    protected FileToDiff right;
+    protected transient DiffView view;
+    protected transient FileToDiff left;
+    protected transient FileToDiff right;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel lblWaitingImage;
     private javax.swing.JPanel pnlDiff;
-    private javax.swing.JPanel pnlFilesMissing;
-    private javax.swing.JPanel pnlWaiting;
-    private javax.swing.JLabel txtFilesMissing;
     // End of variables declaration//GEN-END:variables
 
-    private javax.swing.JButton btnNextDifference = new JButton("Next");
-    private javax.swing.JButton btnPrevDifference = new JButton("Previous");
+    private final javax.swing.JButton btnNextDifference = new JButton("Next");
+    private final javax.swing.JButton btnPrevDifference = new JButton("Previous");
 
-    private UnaryOperator<Image> imageOperator;
+    private transient UnaryOperator<Image> imageOperator;
 
     //~ Constructors -----------------------------------------------------------
 
@@ -121,7 +123,7 @@ public class DiffPanel extends javax.swing.JPanel {
     public void update() {
         if ((left == null) || (right == null)) {
             showFilesMissing();
-            System.out.println("At least one file is null. The diff component can't be created.");
+            LOGGER.warning("At least one file is null. The diff component can't be created.");
             return;
         }
 
@@ -144,8 +146,11 @@ public class DiffPanel extends javax.swing.JPanel {
                         pnlDiff.removeAll();
                         pnlDiff.add(view.getComponent(), BorderLayout.CENTER);
                         showDiff();
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                        LOGGER.log(Level.WARNING, "Diff creation interrupted", e);
+                    } catch (ExecutionException | RuntimeException e) {
+                        LOGGER.log(Level.WARNING, "Diff creation failed", e);
                     }
                 }
             }.execute();
@@ -245,14 +250,14 @@ public class DiffPanel extends javax.swing.JPanel {
     }
 
     /**
-     * Helper method to verify if a given content is valid. Content is valid, if it contains at least one character.
+     * Helper method to verify if a given content is valid. Content is valid if it contains at least one non-whitespace character.
      *
      * @param   content  The content to verify.
      *
      * @return  A flag indicating whether the given content is valid or not.
      */
     protected static boolean isValidContent(final String content) {
-        return (content != null) && (content.trim().length() > 0);
+        return content != null && !content.isBlank();
     }
 
     /**
@@ -279,10 +284,10 @@ public class DiffPanel extends javax.swing.JPanel {
      */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents(JFrame frame) {
-        pnlFilesMissing = new javax.swing.JPanel();
-        txtFilesMissing = new javax.swing.JLabel();
-        pnlWaiting = new javax.swing.JPanel();
-        lblWaitingImage = new javax.swing.JLabel();
+        JPanel pnlFilesMissing = new JPanel();
+        JLabel txtFilesMissing = new JLabel();
+        JPanel pnlWaiting = new JPanel();
+        JLabel lblWaitingImage = new JLabel();
         pnlDiff = new javax.swing.JPanel();
 
         setLayout(new java.awt.CardLayout());
@@ -347,8 +352,8 @@ public class DiffPanel extends javax.swing.JPanel {
 
         //~ Instance fields ----------------------------------------------------
 
-        private Container parent;
-        private String cardToShow;
+        private final Container parent;
+        private final String cardToShow;
 
         //~ Constructors -------------------------------------------------------
 
@@ -367,8 +372,8 @@ public class DiffPanel extends javax.swing.JPanel {
 
         @Override
         public void run() {
-            if (parent.getLayout() instanceof CardLayout) {
-                ((CardLayout)parent.getLayout()).show(parent, cardToShow);
+            if (parent.getLayout() instanceof CardLayout cardLayout) {
+                cardLayout.show(parent, cardToShow);
             }
         }
     }

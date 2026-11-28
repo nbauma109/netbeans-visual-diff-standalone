@@ -25,6 +25,52 @@ jobs:
           java-version: "21"
           cache: maven
 
+      - name: Check out master baseline for parity comparison
+        if: github.event_name == 'pull_request'
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: sonar-parity-baseline
+          persist-credentials: false
+
+      - name: Retrieve public SonarCloud master inventory
+        if: github.event_name == 'pull_request'
+        continue-on-error: true
+        run: |
+          mkdir -p "$RUNNER_TEMP/sonar-parity"
+          curl --fail --silent --show-error --location --retry 2 --max-time 60 \
+            'https://sonarcloud.io/api/issues/search?componentKeys=nbauma109_netbeans-visual-diff-standalone&branch=master&ps=500' \
+            -o "$RUNNER_TEMP/sonar-parity/cloud.json"
+          jq -e '.issues | type == "array"' "$RUNNER_TEMP/sonar-parity/cloud.json"
+          jq '{total, paging, issues: [.issues[] | {rule, component, line, textRange, status, resolution, message}]}' \
+            "$RUNNER_TEMP/sonar-parity/cloud.json"
+          curl --fail --silent --show-error --location --retry 2 --max-time 60 \
+            'https://sonarcloud.io/api/project_analyses/search?project=nbauma109_netbeans-visual-diff-standalone&branch=master&ps=1' \
+            -o "$RUNNER_TEMP/sonar-parity/analyses.json"
+          jq '.analyses[] | {key, date, revision}' "$RUNNER_TEMP/sonar-parity/analyses.json"
+
+      - name: Analyze unchanged master with the local plugin
+        if: github.event_name == 'pull_request'
+        continue-on-error: true
+        run: |
+          mkdir -p "$RUNNER_TEMP/sonar-parity"
+          git -C sonar-parity-baseline rev-parse HEAD
+          mvn --batch-mode --no-transfer-progress -f sonar-parity-baseline/pom.xml \
+            -Dgpg.skip=true -DstaticAnalysis.profile=sonar-way -DstaticAnalysis.failOnViolation=false \
+            test-compile io.github.nbauma109:static-analysis-maven-plugin:0.1.4:check \
+            | tee "$RUNNER_TEMP/sonar-parity/local.log"
+          mvn --batch-mode --no-transfer-progress -f sonar-parity-baseline/pom.xml \
+            -Dgpg.skip=true -DstaticAnalysis.profile=sonar-way -DstaticAnalysis.failOnViolation=false \
+            io.github.nbauma109:static-analysis-maven-plugin:0.1.4:check-tests \
+            | tee "$RUNNER_TEMP/sonar-parity/local-tests.log"
+
+      - name: Upload parity inventories
+        if: github.event_name == 'pull_request' && !cancelled()
+        uses: actions/upload-artifact@v7
+        with:
+          name: sonar-parity-baseline
+          path: ${{ runner.temp }}/sonar-parity/
+
       - name: Build and test with coverage
         run: xvfb-run -a mvn --batch-mode --no-transfer-progress -Dgpg.skip=true clean verify
 
